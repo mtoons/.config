@@ -1,0 +1,70 @@
+return {
+-- {
+-- 'goolord/alpha-nvim',
+-- dependencies = {
+-- 'echasnovski/mini.icons',
+-- 'nvim-lua/plenary.nvim'
+-- },
+-- config = function ()
+-- require'alpha'.setup(require'alpha.themes.dashboard'.config)
+-- end
+-- },
+
+
+-- {
+-- 'nvimdev/dashboard-nvim',
+-- event = 'VimEnter',
+-- config = function()
+-- require('dashboard').setup {
+-- theme = 'doom',
+-- disable_move = false,  --  default is false disable move keymap for hyper
+-- shuffle_letter = true,  --  default is true, shortcut 'letter' will be randomize, set to false to have ordered letter.
+-- change_to_vcs_root = false, -- default is false,for open file in hyper mru. it will change to the root of vcs
+-- config = {
+-- header = {
+-- [[                                                                       ]],
+-- [[                                                                     ]],
+-- [[       ████ ██████           █████      ██                     ]],
+-- [[      ███████████             █████                             ]],
+-- [[      █████████ ███████████████████ ███   ███████████   ]],
+-- [[     █████████  ███    █████████████ █████ ██████████████   ]],
+-- [[    █████████ ██████████ █████████ █████ █████ ████ █████   ]],
+-- [[  ███████████ ███    ███ █████████ █████ █████ ████ █████  ]],
+-- [[ ██████  █████████████████████ ████ █████ █████ ████ ██████ ]],
+-- [[                                                                       ]],
+-- [[                                                                       ]],
+-- [[                                                                       ]],
+-- [[                                                                       ]],
+-- }, --your header
+-- center = {
+-- {
+-- icon = '󰍉',
+-- icon_hl = 'Title',
+-- desc = 'Find File',
+-- desc_hl = 'String',
+-- key = 'f',
+-- -- keymap = 'space s f',
+-- key_hl = 'Number',
+-- key_format = ' %s', -- remove default surrounding `[]`
+-- action = 'Telescope find_files'
+-- },
+-- },
+-- footer = {}  --your footer
+-- },
+-- hide = {
+-- statusline = true,    -- hide statusline default is true
+-- tabline = true,       -- hide the tabline
+-- winbar = true,        -- hide winbar
+-- },
+-- preview = {
+-- file_path = true,     -- preview file path
+-- },
+-- }
+-- end,
+-- dependencies = {
+-- {'nvim-tree/nvim-web-devicons'},
+-- { 'MaximilianLloyd/ascii.nvim', dependencies = { 'MunifTanjim/nui.nvim' },
+-- }
+-- }
+-- },
+}
