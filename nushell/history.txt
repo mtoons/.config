@@ -1997,3 +1997,25 @@ git add starship.toml
 git add .clang-format
 git add deezer-desktop\
 git add wandb\
+z Roaming
+ls
+ls | find n
+z local
+ls
+ls | nvim
+ls | find nvim
+z nvim
+ls
+z .config
+bat nvim\init.lua
+nvim init.lua
+zig run fast_inverse_sqrt.zig
+z nvim
+ls
+nvim
+nvim init.lua
+nvim
+z glfw
+nvim src\main.zig
+nvim init.lua
+z config
