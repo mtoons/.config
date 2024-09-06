@@ -1,0 +1,45 @@
+return {
+  -- {
+  --   "rust-lang/rust.vim",
+  --   ft = "rust",
+  --   init = function()
+  --     vim.g.rustfmt_autosave = 1
+  --   end,
+  -- },
+  --
+  -- {
+  --   "mrcjkb/rustaceanvim",
+  --   ft = "rust",
+  --   dependencies = { 'neovim/nvim-lspconfig', 'nvim-lua/plenary.nvim', 'mfussenegger/nvim-dap', 'rust-lang/rust.vim', "lvimuser/lsp-inlayhints.nvim", },
+  --   config = function()
+  --     vim.g.rustaceanvim = {
+  --       inlay_hints = {
+  --         highlight = "NonText",
+  --       },
+  --       server = {
+  --         on_attach = require("plugins.lsp").on_attach,
+  --         capabilities = require("plugins.lsp").capabilities,
+  --         handlers = require("plugins.lsp").handlers,
+  --         -- on_attach = function(client, bufnr)
+  --         --   -- you can also put keymaps in here
+  --         -- end,
+  --         default_settings = {
+  --           -- rust-analyzer language server configuration
+  --           ['rust-analyzer'] = {
+  --             cargo = { allFeatures = true },
+  --           },
+  --         },
+  --       },
+  --     }
+  --   end
+  -- },
+  --
+  -- {
+  --   'saecki/crates.nvim',
+  --   ft = { "rust", "toml" },
+  --   config = function()
+  --     local crates = require('crates')
+  --     crates.setup()
+  --   end,
+  -- },
+}
