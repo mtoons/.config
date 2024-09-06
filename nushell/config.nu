@@ -895,7 +895,7 @@ $env.config = {
 }
 
 
-source ~/.zoxide.nu
+source ~/.config/nushell/.zoxide.nu
 
 use ~/.cache/starship/init.nu
 use ./themes/catppuccin-mocha.nu
