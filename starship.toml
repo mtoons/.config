@@ -107,7 +107,7 @@ style = "fg:base bg:Teal"
 format = '[ $symbol ($version) ]($style)'
 
 [c]
-symbol = " "
+symbol = "[ ](fg:blue bg:teal)"
 style = "fg:base bg:Teal"
 format = '[ $symbol ($version) ]($style)'
 
@@ -193,7 +193,7 @@ style = "fg:base bg:Teal"
 format = '[ $symbol ($version) ]($style)'
 
 [kotlin]
-symbol = " "
+symbol = "[ ](fg: lavender bg:teal)"
 style = "fg:base bg:teal"
 format = '[ $symbol ($version) ]($style)'
 
@@ -318,6 +318,7 @@ style = "fg:base bg:teal"
 format = '[ $symbol ($version) ]($style)'
 
 [zig]
+version_format = "v${major}.${minor}.${patch}"
 symbol = "[ ](fg:peach bg:teal)"
 style = "fg:base bg:teal"
 format = '[ $symbol ($version) ]($style)'

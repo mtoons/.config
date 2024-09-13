@@ -895,6 +895,7 @@ $env.config = {
 }
 
 
+alias icat = wezterm imgcat
 source ~/.config/nushell/.zoxide.nu
 
 use ~/.cache/starship/init.nu
