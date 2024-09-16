@@ -54,6 +54,9 @@ vim.keymap.set("i", "<C-l>", "<C-\\><C-N><C-w>l")
 -- Highlight on search
 vim.o.hlsearch = true
 
+-- Folds
+vim.o.foldmethod = "indent"
+
 -- Nerd font
 vim.g.have_nerd_font = true
 
