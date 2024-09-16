@@ -56,6 +56,7 @@ vim.o.hlsearch = true
 
 -- Folds
 vim.o.foldmethod = "indent"
+vim.o.foldlevelstart = 99
 
 -- Nerd font
 vim.g.have_nerd_font = true
