@@ -3,8 +3,17 @@ local wezterm = require 'wezterm'
 local smart_splits = wezterm.plugin.require('https://github.com/mrjones2014/smart-splits.nvim')
 -- This will hold the configuration.
 local config = wezterm.config_builder()
-
+local mux = wezterm.mux
 local act = wezterm.action
+
+-- Startup script
+wezterm.on('gui-startup', function(cmd)
+  local tab, pane, window = mux.spawn_window(cmd or {})
+  local screen = wezterm.gui.screens().main
+  local padding = screen.height/15
+  window:gui_window():set_position(padding, padding)
+  window:gui_window():set_inner_size(screen.width-(padding*2), screen.height-(padding*2))
+  end)
 
 -- This is where you actually apply your config choices
 config.default_prog = { 'C:\\Users\\Angel\\.cargo\\bin\\nu.exe', '-l' } -- Crash for obscure reasons
