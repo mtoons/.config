@@ -1,5 +1,5 @@
 return {
- {
+    {
         "benlubas/molten-nvim",
         lazy = true,
         event = "BufEnter *.ipynb",
@@ -13,7 +13,8 @@ return {
             vim.g.molten_output_show_more = true
             vim.g.molten_image_provider = "wezterm"
             vim.g.molten_output_virt_lines = true
-            vim.g.molten_split_direction = "right" --direction of the output window, options are "right", "left", "top", "bottom"
+            vim.g.molten_split_direction =
+            "right"                      --direction of the output window, options are "right", "left", "top", "bottom"
             vim.g.molten_split_size = 40 --(0-100) % size of the screen dedicated to the output window
             vim.g.molten_virt_text_output = true
             vim.g.molten_use_border_highlights = true

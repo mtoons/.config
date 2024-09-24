@@ -4,13 +4,13 @@ vim.g.maplocalleader = " "
 -- Install `lazy.nvim` plugin manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then ---@diagnostic disable-line: undefined-field
-	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-	vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+    local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+    vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-	{ import = "plugins" },
+    { import = "plugins" },
 }, {})
 
 -- Keymaps
@@ -36,7 +36,7 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 -- Terminal
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>") -- Escape
 vim.keymap.set("t", "<C-v>", function()
-	return '<C-\\><C-N>"+pi'
+    return '<C-\\><C-N>"+pi'
 end, { expr = true })
 vim.keymap.set("t", "<C-w>", "<C-\\><C-n><C-w>")
 
@@ -98,10 +98,10 @@ vim.o.timeoutlen = 300
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
-vim.o.expandtab = true -- expand tab input with spaces characters
+vim.o.expandtab = true   -- expand tab input with spaces characters
 vim.o.smartindent = true -- syntax aware indentations for newline inserts
-vim.o.tabstop = 4 -- num of space characters per tab
-vim.o.shiftwidth = 4 -- spaces per indentation level
+vim.o.tabstop = 4        -- num of space characters per tab
+vim.o.shiftwidth = 4     -- spaces per indentation level
 vim.o.softtabstop = 4
 
 -- True colors
@@ -112,21 +112,21 @@ vim.g.gui_font_face = "VictorMono Nerd Font"
 vim.g.gui_font_default_size = 17
 vim.g.gui_font_size = vim.g.gui_font_default_size
 RefreshGuiFont = function()
-	vim.opt.guifont = string.format("%s:h%s", vim.g.gui_font_face, vim.g.gui_font_size)
+    vim.opt.guifont = string.format("%s:h%s", vim.g.gui_font_face, vim.g.gui_font_size)
 end
 ResizeGuiFont = function(delta)
-	vim.g.gui_font_size = vim.g.gui_font_size + delta
-	RefreshGuiFont()
+    vim.g.gui_font_size = vim.g.gui_font_size + delta
+    RefreshGuiFont()
 end
 ResetGuiFont = function()
-	vim.g.gui_font_size = vim.g.gui_font_default_size
-	RefreshGuiFont()
+    vim.g.gui_font_size = vim.g.gui_font_default_size
+    RefreshGuiFont()
 end
 ResetGuiFont()
 
 vim.keymap.set({ "n", "i" }, "<C-+>", function()
-	ResizeGuiFont(1)
+    ResizeGuiFont(1)
 end, { noremap = true, silent = true })
 vim.keymap.set({ "n", "i" }, "<C-->", function()
-	ResizeGuiFont(-1)
+    ResizeGuiFont(-1)
 end, { noremap = true, silent = true })
