@@ -8,12 +8,12 @@ local act = wezterm.action
 
 -- Startup script
 wezterm.on('gui-startup', function(cmd)
-  local tab, pane, window = mux.spawn_window(cmd or {})
-  local screen = wezterm.gui.screens().main
-  local padding = screen.height/15
-  window:gui_window():set_position(padding, padding)
-  window:gui_window():set_inner_size(screen.width-(padding*2), screen.height-(padding*2))
-  end)
+    local tab, pane, window = mux.spawn_window(cmd or {})
+    local screen = wezterm.gui.screens().main
+    local padding = screen.height / 20
+    window:gui_window():set_position(padding, padding)
+    window:gui_window():set_inner_size(screen.width - (padding * 2), screen.height - (padding * 2 + 30))
+end)
 
 -- This is where you actually apply your config choices
 config.default_prog = { 'C:\\Users\\Angel\\.cargo\\bin\\nu.exe', '-l' } -- Crash for obscure reasons
@@ -22,6 +22,8 @@ config.allow_win32_input_mode = false
 config.enable_kitty_keyboard = true
 -- For example, changing the color scheme:
 config.color_scheme = 'Catppuccin Mocha'
+-- config.window_background_opacity = 0.5
+-- config.win32_system_backdrop = 'Acrylic'
 
 config.font = wezterm.font 'VictorMono Nerd Font'
 config.font_size = 15
@@ -139,14 +141,14 @@ smart_splits.apply_to_config(config, {
     -- if you want to use separate direction keys for move vs. resize, you
     -- can also do this:
     -- direction_keys = {
-        --     move = { 'h', 'j', 'k', 'l' },
-        --     resize = { 'LeftArrow', 'DownArrow', 'UpArrow', 'RightArrow' },
-        -- },
-        -- modifier keys to combine with direction_keys
-        modifiers = {
-            move = 'CTRL', -- modifier to use for pane movement, e.g. CTRL+h to move left
-            resize = 'ALT', -- modifier to use for pane resize, e.g. META+h to resize to the left
-        },
-    })
-    -- and finally, return the configuration to wezterm
-    return config
+    --     move = { 'h', 'j', 'k', 'l' },
+    --     resize = { 'LeftArrow', 'DownArrow', 'UpArrow', 'RightArrow' },
+    -- },
+    -- modifier keys to combine with direction_keys
+    modifiers = {
+        move = 'CTRL',  -- modifier to use for pane movement, e.g. CTRL+h to move left
+        resize = 'ALT', -- modifier to use for pane resize, e.g. META+h to resize to the left
+    },
+})
+-- and finally, return the configuration to wezterm
+return config

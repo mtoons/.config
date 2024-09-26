@@ -157,7 +157,7 @@ $env.config = {
     }
 
     table: {
-        mode: rounded # basic, compact, compact_double, light, thin, with_love, rounded, reinforced, heavy, none, other
+        mode: light # basic, compact, compact_double, light, thin, with_love, rounded, reinforced, heavy, none, other
         index_mode: always # "always" show indexes, "never" show indexes, "auto" = show indexes when a table has "index" column
         show_empty: true # show 'empty list' and 'empty record' placeholders for command output
         padding: { left: 1, right: 1 } # a left right padding of each column in a table
@@ -896,6 +896,13 @@ $env.config = {
 
 
 alias icat = wezterm imgcat
+def fetch [] {
+    clear
+    if $env.OS == Windows_NT {
+        fastfetch --logo C:/Users/Angel/.config/fastfetch/windows.png --logo-type iterm --logo-width 25 --logo-height 10
+    }
+}
+
 source ~/.config/nushell/.zoxide.nu
 
 use ~/.cache/starship/init.nu
