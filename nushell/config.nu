@@ -901,6 +901,12 @@ def fetch [] {
     if $env.OS == Windows_NT {
         fastfetch --logo C:/Users/Angel/.config/fastfetch/windows.png --logo-type iterm --logo-width 25 --logo-height 10
     }
+    else if $env.OS == nixos {
+        fastfetch --logo ~/.config/fastfetch/nixos.png --logo-type iterm --logo-width 25 --logo-height 10
+    }
+    else {
+        fastfetch
+    }
 }
 
 source ~/.config/nushell/.zoxide.nu
