@@ -901,7 +901,7 @@ def fetch [] {
     let os = sys host | get name
     if $os == "Windows" {
         fastfetch --logo C:/Users/Angel/.config/fastfetch/windows.png --logo-type iterm --logo-width 25 --logo-height 10
-    } else if $os == "nixos" {
+    } else if $os == "NixOS" {
         fastfetch --logo ~/.config/fastfetch/nixos.png --logo-type iterm --logo-width 25 --logo-height 10
     } else {
         fastfetch
