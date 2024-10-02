@@ -897,8 +897,8 @@ $env.config = {
 
 alias icat = wezterm imgcat
 def fetch [] {
-    clear
     let os = sys host | get name
+    clear
     if $os == "Windows" {
         fastfetch --logo C:/Users/Angel/.config/fastfetch/windows.png --logo-type iterm --logo-width 25 --logo-height 10
     } else if $os == "NixOS" {
