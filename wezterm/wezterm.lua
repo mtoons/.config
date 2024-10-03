@@ -27,6 +27,7 @@ config.win32_system_backdrop = 'Acrylic'
 
 config.font = wezterm.font 'VictorMono Nerd Font'
 config.font_size = 15
+config.adjust_window_size_when_changing_font_size = false
 config.window_decorations = "RESIZE"
 config.leader = { key = "x", mods = "CTRL", timeout_milliseconds = 5000 }
 config.keys = {
