@@ -139,6 +139,9 @@ return {
                 -- tsserver = {},
                 --
 
+                texlab = {
+                    filetypes = { "latex", "markdown" },
+                },
                 lua_ls = {
                     -- cmd = {...},
                     -- filetypes = { ...},
