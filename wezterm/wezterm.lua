@@ -22,7 +22,7 @@ config.allow_win32_input_mode = false
 config.enable_kitty_keyboard = true
 -- For example, changing the color scheme:
 config.color_scheme = 'Catppuccin Mocha'
-config.window_background_opacity = 0.5
+config.window_background_opacity = 0.7
 config.win32_system_backdrop = 'Acrylic'
 
 config.font = wezterm.font 'VictorMono Nerd Font'
