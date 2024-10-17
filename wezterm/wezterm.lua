@@ -8,11 +8,14 @@ local act = wezterm.action
 
 -- Startup script
 wezterm.on('gui-startup', function(cmd)
-    local tab, pane, window = mux.spawn_window(cmd or {})
-    local screen = wezterm.gui.screens().main
-    local padding = screen.height / 20
-    window:gui_window():set_position(padding, padding)
-    window:gui_window():set_inner_size(screen.width - (padding * 2), screen.height - (padding * 2 + 30))
+    local wm = true
+    if not wm then
+        local tab, pane, window = mux.spawn_window(cmd or {})
+        local screen = wezterm.gui.screens().main
+        local padding = screen.height / 20
+        window:gui_window():set_position(padding, padding)
+        window:gui_window():set_inner_size(screen.width - (padding * 2), screen.height - (padding * 2 + 30))
+    end
 end)
 
 -- This is where you actually apply your config choices
@@ -29,8 +32,22 @@ config.font = wezterm.font 'VictorMono Nerd Font'
 config.font_size = 15
 config.adjust_window_size_when_changing_font_size = false
 config.window_decorations = "RESIZE"
+wezterm.on("toggle-colorscheme", function(window, pane)
+    local overrides = window:get_config_overrides() or {}
+    if overrides.window_background_opacity == 1 then
+        overrides.window_background_opacity = 0.7
+    else
+        overrides.window_background_opacity = 1
+    end
+    window:set_config_overrides(overrides)
+end)
 config.leader = { key = "x", mods = "CTRL", timeout_milliseconds = 5000 }
 config.keys = {
+    {
+        mods = "LEADER",
+        key = "t",
+        action = wezterm.action.EmitEvent("toggle-colorscheme"),
+    },
     {
         mods = "LEADER",
         key = "c",
@@ -96,34 +113,6 @@ config.keys = {
         action = act.Multiple {
             act.CloseCurrentPane { confirm = false },
             act.ActivatePaneDirection 'Right',
-        },
-    },
-    {
-        mods = "ALT|SHIFT",
-        key = "h",
-        action = act.SplitPane {
-            direction = 'Left',
-        },
-    },
-    {
-        mods = "ALT|SHIFT",
-        key = "j",
-        action = act.SplitPane {
-            direction = 'Down',
-        },
-    },
-    {
-        mods = "ALT|SHIFT",
-        key = "k",
-        action = act.SplitPane {
-            direction = 'Up',
-        },
-    },
-    {
-        mods = "ALT|SHIFT",
-        key = "l",
-        action = act.SplitPane {
-            direction = 'Right',
         },
     },
     {

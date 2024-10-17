@@ -1,14 +1,14 @@
 return {
-    {
-        lazy = true,
-        "iamcco/markdown-preview.nvim",
-        cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-        build = "cd app && yarn install",
-        init = function()
-            vim.g.mkdp_filetypes = { "markdown", "latex", "tex", "plaintex" }
-        end,
-        ft = { "markdown", "latex", "tex", "plaintex" },
-    },
+    -- {
+    --     lazy = true,
+    --     "iamcco/markdown-preview.nvim",
+    --     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    --     build = "cd app && yarn install",
+    --     init = function()
+    --         vim.g.mkdp_filetypes = { "markdown", "latex", "tex", "plaintex" }
+    --     end,
+    --     ft = { "markdown", "latex", "tex", "plaintex" },
+    -- },
     {
         "lervag/vimtex",
         lazy = false, -- we don't want to lazy load VimTeX
