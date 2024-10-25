@@ -51,6 +51,7 @@ return {
                     notifier = true,
                     fidget = true,
                     markdown = true,
+                    render_markdown = true,
                     mini = {
                         enabled = false,
                         indentscope_color = "",

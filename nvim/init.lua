@@ -20,9 +20,6 @@ vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 -- Clear highlight
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
--- Ctrl-v
-vim.keymap.set({ "i", "c" }, "<C-v>", "<C-r>+")
-
 -- Keep cursor in view
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true })
@@ -130,3 +127,42 @@ end, { noremap = true, silent = true })
 vim.keymap.set({ "n", "i" }, "<C-->", function()
     ResizeGuiFont(-1)
 end, { noremap = true, silent = true })
+
+-- Functions
+-- vim.keymap.set('i', ')', function() return BracketClose(')') end, { buffer = true, expr = true })
+-- vim.keymap.set('i', '}', function() return BracketClose('}') end, { buffer = true, expr = true })
+-- vim.keymap.set('i', ']', function() return BracketClose(']') end, { buffer = true, expr = true })
+-- vim.keymap.set('i', '<CR>', function() return BracketSplit() end, { buffer = true, expr = true })
+function BracketClose(char)
+    return char
+end
+
+function BracketSplit()
+    local cursor = vim.api.nvim_win_get_cursor(0)
+    local line = vim.api.nvim_get_current_line()
+    local next_char = line[cursor[1] + 1]
+    if next_char == ')' then
+        return "<CR><CR><Up><Tab>"
+    end
+
+    return '<CR>'
+end
+
+-- local augroup = vim.api.nvim_create_augroup("BracketUtils", { clear = true })
+-- vim.api.nvim_create_autocmd('InsertCharPre', {
+--     group = augroup,
+--     desc = "Utils for formating brackets with new lines",
+--     callback = function()
+--         if vim.v.char == "<CR>" then
+--             -- if next char is ), } or ] then
+--                 -- <CR> backspace upArrow <Tab>
+--             -- end
+--         -- elseif vim.v.char is ), } or ] then
+--              local cursor = vim.api.nvim_win_get_cursor(0)
+--              local current_line = vim.api.nvim_buf_get_lines(0, cursor[1], cursor[1]+1, false)
+--             -- if line is blankspaces then
+--                 -- <CR> backspace vim.v.char upArrow
+--             -- end
+--         end
+--     end,
+-- })
