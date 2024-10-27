@@ -84,10 +84,9 @@ read_only = " 󰌾 "
 # So either put "Important Documents" before "Documents" or use the substituted version:
 # "Important 󰈙 " = " 󰈙 "
 [character]
-# Note the use of Catppuccin color 'maroon'
-success_symbol = "[[ ](black) ❯](maroon)"
+success_symbol = "[[ ](black) ❯](rosewater)"
 error_symbol = "[[ ](red) ❯](black)"
-vimcmd_symbol = "[❮](green)"
+vimcmd_symbol = "[[ ](black) ❮](green)"
 
 [time]
 disabled = false

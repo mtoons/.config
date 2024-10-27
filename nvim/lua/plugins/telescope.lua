@@ -9,7 +9,6 @@ return {
 
             vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles,
                 { desc = '[?] Find recently opened files' })
-            vim.keymap.set('n', '<leader><space>', require('telescope.builtin').find_files, { desc = '[ ] Find files' })
             vim.keymap.set('n', '<leader>/', require('telescope.builtin').current_buffer_fuzzy_find,
                 { desc = '[/] Fuzzily search in current buffer' })
 

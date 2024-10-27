@@ -20,6 +20,12 @@ vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 -- Clear highlight
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
+-- Alternate file
+vim.keymap.set("n", "<leader><space>", "<C-^>")
+
+-- Diagnostic
+vim.keymap.set("n", "<leader>d", function() vim.diagnostic.open_float({}) end, { desc = "[D]iagnostics", silent = true })
+
 -- Keep cursor in view
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true })
@@ -50,6 +56,22 @@ vim.keymap.set("i", "<C-l>", "<C-\\><C-N><C-w>l")
 -- Settings
 -- Highlight on search
 vim.o.hlsearch = true
+
+-- Diagnostics
+vim.diagnostic.config {
+    virtual_text = {
+        prefix = "",
+        spacing = 0,
+    },
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = ' ',
+            [vim.diagnostic.severity.WARN] = ' ',
+            [vim.diagnostic.severity.HINT] = ' ',
+            [vim.diagnostic.severity.INFO] = ' ',
+        },
+    },
+}
 
 -- Folds
 vim.o.foldmethod = "indent"
