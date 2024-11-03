@@ -899,18 +899,17 @@ alias icat = wezterm imgcat
 alias c = clear
 alias v = nvim
 alias l = ls
+alias w = wsl
 def fetch [] {
-    clear
     let os = sys host | get name;
-    clear
     if $os == "Windows" {
-        clear
+        clear -k
         fastfetch --logo C:/Users/Angel/.config/fastfetch/windows.png --logo-type iterm --logo-width 25 --logo-height 10
     } else if $os == "NixOS" {
-        clear
+        clear -k
         fastfetch --logo ~/.config/fastfetch/nixos.png --logo-type iterm --logo-width 25 --logo-height 10
     } else {
-        clear
+        clear -k
         fastfetch
     }
 }
