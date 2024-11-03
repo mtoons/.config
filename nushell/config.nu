@@ -900,7 +900,7 @@ alias c = clear
 alias v = nvim
 alias l = ls
 alias w = wsl
-def fetch [] {
+def f [] {
     let os = sys host | get name;
     if $os == "Windows" {
         clear -k
