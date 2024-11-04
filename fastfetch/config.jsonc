@@ -7,10 +7,10 @@
     //"host",
     //"kernel",
     "uptime",
-    {
-        "type": "packages",
-        "disabled": ["choco"]
-    },
+    //{
+    //    "type": "packages",
+    //    "disabled": ["choco"]
+    //},
     "shell",
     //"display",
     "de",
