@@ -22,7 +22,7 @@ return {
             "WhoIsSethDaniel/mason-tool-installer.nvim",
 
             -- Useful status updates for LSP.
-            { "j-hui/fidget.nvim",       opts = {} },
+            -- { "j-hui/fidget.nvim",       opts = {} },
 
             -- Allows extra capabilities provided by nvim-cmp
             "hrsh7th/cmp-nvim-lsp",
@@ -139,6 +139,18 @@ return {
                 -- tsserver = {},
                 --
 
+                tinymist = {
+                    single_file_support = true,
+                    root_dir = function()
+                        return vim.fn.getcwd()
+                    end,
+                    filetypes = { "typst" },
+                    settings = {
+                        exportPdf = "onType",
+                        outputPath = "$root/$dir/$name",
+                        formatterMode = "typstyle",
+                    },
+                },
                 texlab = {
                     filetypes = { "latex", "markdown" },
                 },
@@ -171,6 +183,7 @@ return {
             local ensure_installed = vim.tbl_keys(servers or {})
             vim.list_extend(ensure_installed, {
                 "stylua", -- Used to format Lua code
+                "tinymist",
             })
             require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
@@ -218,7 +231,8 @@ return {
             formatters_by_ft = {
                 -- Conform can also run multiple formatters sequentially
                 -- python = { "isort", "black" },
-                --
+                typst = { "typstyle", "typstfmt", stop_after_first = true },
+                -- lua = { "stylua" },
                 -- You can use 'stop_after_first' to run the first available formatter from the list
                 -- javascript = { "prettierd", "prettier", stop_after_first = true },
             },
