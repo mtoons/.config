@@ -2,4 +2,5 @@ nushell/.zoxide.nu
 nushell/history.txt
 nvim/lazy-lock.json
 nvim/.luarc.json
+nvim/spell/
 deezer-desktop

@@ -17,6 +17,14 @@ require("lazy").setup({
 -- Silent leader
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
+-- Spellcheck
+vim.keymap.set("n", "<leader>cf", ":setlocal spell spelllang=fr<CR>",
+    { silent = true, desc = "[C]heck [F]rench spelling" })
+vim.keymap.set("n", "<leader>ce", ":setlocal spell spelllang=en<CR>",
+    { silent = true, desc = "[C]heck [E]nglish spelling" })
+vim.keymap.set("n", "<leader>cs", ":setlocal spell spelllang=es<CR>",
+    { silent = true, desc = "[C]heck [S]panish spelling" })
+
 -- Clear highlight
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
