@@ -82,7 +82,8 @@ vim.diagnostic.config {
 }
 
 -- Folds
-vim.o.foldmethod = "indent"
+vim.wo.foldmethod = 'expr'
+vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 vim.o.foldlevelstart = 99
 
 -- Nerd font

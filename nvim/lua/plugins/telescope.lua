@@ -3,9 +3,40 @@ return {
         'nvim-telescope/telescope.nvim',
         branch = '0.1.x',
         config = function()
-            require('telescope').setup {}
+            require('telescope').setup {
+                defaults = {
+                    mappings = {
+                        i = {
+                            ["<esc>"] = require("telescope.actions").close
+                        },
+                    },
+                },
+                pickers = {
+                    default = {
+                        theme = "dropdown",
+                    },
+                    buffers = {
+                        theme = "dropdown",
+                    },
+                    oldfiles = {
+                        theme = "dropdown",
+                    },
+                    commands = {
+                        theme = "dropdown",
+                    },
+                    tags = {
+                        theme = "dropdown",
+                    },
+                },
+                extensions = {
+                    ["ui-select"] = {
+                        require("telescope.themes").get_ivy {},
+                    },
+                },
+            }
 
             pcall(require('telescope').load_extension, 'fzf')
+            require("telescope").load_extension("ui-select")
 
             vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles,
                 { desc = '[?] Find recently opened files' })
@@ -23,6 +54,7 @@ return {
                 { desc = '[S]earch [D]iagnostics' })
             vim.keymap.set('n', '<leader>sb', require('telescope.builtin').buffers, { desc = '[S]earch [B]uffers' })
             vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
+            vim.keymap.set('n', '<leader>so', require('telescope.builtin').oldfiles, { desc = '[S]earch [O]ldfiles' })
         end,
         dependencies = {
             'nvim-lua/plenary.nvim',
