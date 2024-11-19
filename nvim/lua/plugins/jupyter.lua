@@ -47,7 +47,7 @@ return {
                     cr = "<space>i<cr>",
                     interrupt = "<space>i<space>",
                     exit = "<space>iq",
-                    clear = "<space>il",
+                    clear = "<space>iC",
                 },
                 -- If the highlight is on, you can change how it looks
                 -- For the available options, check nvim_set_hl
