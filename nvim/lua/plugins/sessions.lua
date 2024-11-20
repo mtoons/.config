@@ -12,15 +12,17 @@ return {
         init = function()
             require("telescope").load_extension("persisted")
             vim.keymap.set('n', '<leader>ss', ":Telescope persisted theme=dropdown<CR>",
-                { desc = '[S]earch [S]essions', silent = true, })
+                { desc = '[S]earch [S]essions', })
             vim.keymap.set('n', '<leader>Ss', ":SessionStart<CR>",
-                { desc = '[S]essions [S]tart', silent = true, })
+                { desc = '[S]essions [S]tart', })
             vim.keymap.set('n', '<leader>Sb', ":SessionStop<CR>",
-                { desc = '[S]essions [B]reak', silent = true, })
+                { desc = '[S]essions [B]reak', })
+            vim.keymap.set('n', '<leader>Sw', ":SessionSave<CR>",
+                { desc = '[S]essions [W]rite', })
             vim.keymap.set('n', '<leader>Sl', ":SessionLoad<CR>",
-                { desc = '[S]essions [L]oad', silent = true, })
+                { desc = '[S]essions [L]oad', })
             vim.keymap.set('n', '<leader>Sd', ":SessionDelete<CR>",
-                { desc = '[S]essions [D]elete', silent = true, })
+                { desc = '[S]essions [D]elete', })
         end,
         -- keys = {
         -- },
