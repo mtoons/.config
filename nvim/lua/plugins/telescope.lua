@@ -6,6 +6,9 @@ return {
             local telescope = require 'telescope'
             telescope.setup {
                 defaults = {
+                    file_ignore_patterns = {
+                        "node_modules", "build", "dist", "yarn.lock", "%.odt", "%.pdf"
+                    },
                     mappings = {
                         i = {
                             ["<esc>"] = require("telescope.actions").close
