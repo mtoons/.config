@@ -3,9 +3,10 @@ def t [t: path] {
     let template: path = "~/.config/nushell/templates/template." + $type | path expand
     if ($template | path exists) {
         cp $template $t
-        print $t
+        return $t
     } else {
         print $"no template for filetype: '($type)'"
         touch $t
+        return $t
     }
 }
