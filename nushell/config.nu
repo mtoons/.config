@@ -915,6 +915,7 @@ def f [] {
 }
 
 source ~/.config/nushell/.zoxide.nu
+source ./templates/script.nu
 
 use ~/.cache/starship/init.nu
 use ./themes/catppuccin-mocha.nu
