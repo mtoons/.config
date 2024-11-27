@@ -90,8 +90,8 @@ vim.o.foldlevelstart = 99
 vim.g.have_nerd_font = true
 
 -- Line numbers
-vim.wo.number = true
-vim.wo.relativenumber = true
+vim.o.number = true
+vim.o.relativenumber = true
 
 -- Mouse
 vim.o.mouse = "a"
