@@ -4,7 +4,7 @@ palette = "catppuccin_mocha"
 format = """
 $os\
 $username \
-$shell\
+$shell \
 $directory\
 $git_branch\
 $git_status\
