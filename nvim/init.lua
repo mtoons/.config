@@ -81,6 +81,9 @@ vim.diagnostic.config {
     },
 }
 
+-- Column
+vim.o.colorcolumn = "80,120"
+
 -- Folds
 vim.wo.foldmethod = 'expr'
 vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
