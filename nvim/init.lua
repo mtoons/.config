@@ -166,3 +166,12 @@ end, { noremap = true, silent = true })
 vim.keymap.set({ "n", "i" }, "<C-->", function()
     ResizeGuiFont(-1)
 end, { noremap = true, silent = true })
+
+-- Autocmds
+vim.api.nvim_create_autocmd("TextYankPost", {
+    desc = "Highlight on yank",
+    group = vim.api.nvim_create_augroup("HighOnYan", { clear = true }),
+    callback = function()
+        vim.highlight.on_yank()
+    end,
+})
