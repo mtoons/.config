@@ -1,5 +1,6 @@
 return {
     {
+        ft = "ipynb",
         'Vigemus/iron.nvim',
         config = function()
             local iron = require("iron.core")
@@ -65,6 +66,7 @@ return {
         end,
     },
     {
+        ft = "ipynb",
         "GCBallesteros/jupytext.nvim",
         -- config = true,
         -- Depending on your nvim distro or config you may need to make the loading not lazy
