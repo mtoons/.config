@@ -32,11 +32,16 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 vim.keymap.set("n", "<leader><space>", "<C-^>")
 
 -- Diagnostic
-vim.keymap.set("n", "<leader>d", function() vim.diagnostic.open_float({}) end, { desc = "[D]iagnostics", silent = true })
+vim.keymap.set(
+    "n",
+    "<leader>d",
+    function() vim.diagnostic.open_float({}) end,
+    { desc = "[D]iagnostics", silent = true, }
+)
 
 -- Keep cursor in view
-vim.keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true })
-vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true })
+-- vim.keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true })
+-- vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true })
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
@@ -80,6 +85,9 @@ vim.diagnostic.config {
         },
     },
 }
+
+-- Column
+vim.o.colorcolumn = "80,120"
 
 -- Folds
 vim.wo.foldmethod = 'expr'
