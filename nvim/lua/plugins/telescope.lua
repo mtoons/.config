@@ -15,50 +15,59 @@ return {
             {
                 '<leader>sh',
                 require('telescope.builtin').help_tags,
-                desc = '[S]earch [H]elp',
+                desc = 'Search [H]elp',
             },
             {
                 '<leader>sk',
                 function()
                     require('telescope.builtin').keymaps(require "telescope.themes".get_dropdown())
                 end,
-                desc = '[S]earch [K]eymaps',
+                desc = 'Search [K]eymaps',
             },
             {
                 '<leader>sf',
                 require('telescope.builtin').find_files,
-                desc = '[S]earch [F]iles',
+                desc = 'Search [F]iles',
             },
             {
                 '<leader>gf',
                 require('telescope.builtin').git_files,
-                desc = 'Search [G]it [F]iles',
+                desc = 'Search Git [F]iles',
             },
             {
                 '<leader>sw',
                 require('telescope.builtin').grep_string,
-                desc = '[S]earch current [W]ord',
+                desc = 'Search current [W]ord',
             },
-            { '<leader>sg', require('telescope.builtin').live_grep, desc = '[S]earch by [G]rep', },
+            { '<leader>sg', require('telescope.builtin').live_grep, desc = 'Search by [G]rep', },
             {
                 '<leader>sd',
                 require('telescope.builtin').diagnostics,
-                desc = '[S]earch [D]iagnostics',
+                desc = 'Search [D]iagnostics',
             },
             {
                 '<leader>sb',
                 require('telescope.builtin').buffers,
-                desc = '[S]earch [B]uffers',
+                desc = 'Search [B]uffers',
             },
             {
                 '<leader>sr',
                 require('telescope.builtin').resume,
-                desc = '[S]earch [R]esume',
+                desc = 'Search [R]esume',
             },
             {
                 '<leader>so',
                 require('telescope.builtin').oldfiles,
-                desc = '[S]earch [O]ldfiles',
+                desc = 'Search [O]ldfiles',
+            },
+            {
+                '<leader>sp',
+                function()
+                    require('telescope.builtin').find_files {
+                        cwd = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy")
+                    }
+                end,
+                desc = 'Search [P]ackages',
             },
         },
         'nvim-telescope/telescope.nvim',
