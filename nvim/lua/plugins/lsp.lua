@@ -157,6 +157,9 @@ return {
                         },
                     },
                 },
+
+                -- Nushell
+                nushell = {},
             }
             for server, opts in pairs(servers) do
                 opts.capabilities = vim.tbl_deep_extend("force", {}, capabilities, opts.capabilities or {})
