@@ -1,11 +1,6 @@
 return {
     {
         keys = {
-            -- {
-            --     "<leader>-",
-            --     "<cmd>Yazi<cr>",
-            --     desc = "Open yazi at the current file",
-            -- },
             {
                 '<leader>?',
                 require('telescope.builtin').oldfiles,
@@ -17,14 +12,28 @@ return {
                 desc = '[/] Fuzzily search in current buffer',
             },
 
-            { '<leader>sh', require('telescope.builtin').help_tags,  desc = '[S]earch [H]elp', },
+            {
+                '<leader>sh',
+                require('telescope.builtin').help_tags,
+                desc = '[S]earch [H]elp',
+            },
             {
                 '<leader>sk',
-                function() require('telescope.builtin').keymaps(require "telescope.themes".get_dropdown()) end,
+                function()
+                    require('telescope.builtin').keymaps(require "telescope.themes".get_dropdown())
+                end,
                 desc = '[S]earch [K]eymaps',
             },
-            { '<leader>sf', require('telescope.builtin').find_files, desc = '[S]earch [F]iles', },
-            { '<leader>gf', require('telescope.builtin').git_files,  desc = 'Search [G]it [F]iles', },
+            {
+                '<leader>sf',
+                require('telescope.builtin').find_files,
+                desc = '[S]earch [F]iles',
+            },
+            {
+                '<leader>gf',
+                require('telescope.builtin').git_files,
+                desc = 'Search [G]it [F]iles',
+            },
             {
                 '<leader>sw',
                 require('telescope.builtin').grep_string,
@@ -36,9 +45,21 @@ return {
                 require('telescope.builtin').diagnostics,
                 desc = '[S]earch [D]iagnostics',
             },
-            { '<leader>sb', require('telescope.builtin').buffers,   desc = '[S]earch [B]uffers', },
-            { '<leader>sr', require('telescope.builtin').resume,    desc = '[S]earch [R]esume', },
-            { '<leader>so', require('telescope.builtin').oldfiles,  desc = '[S]earch [O]ldfiles', },
+            {
+                '<leader>sb',
+                require('telescope.builtin').buffers,
+                desc = '[S]earch [B]uffers',
+            },
+            {
+                '<leader>sr',
+                require('telescope.builtin').resume,
+                desc = '[S]earch [R]esume',
+            },
+            {
+                '<leader>so',
+                require('telescope.builtin').oldfiles,
+                desc = '[S]earch [O]ldfiles',
+            },
         },
         'nvim-telescope/telescope.nvim',
         branch = '0.1.x',
@@ -63,7 +84,7 @@ return {
                         theme = "dropdown",
                     },
                     oldfiles = {
-                        theme = "dropdown",
+                        theme = "ivy",
                     },
                     commands = {
                         theme = "dropdown",
@@ -72,10 +93,19 @@ return {
                         theme = "dropdown",
                     },
                     diagnostics = {
-                        theme = "dropdown",
+                        theme = "ivy",
                     },
                     keymaps = {
                         theme = "dropdown",
+                    },
+                    current_buffer_fuzzy_find = {
+                        theme = "ivy",
+                    },
+                    find_files = {
+                        theme = "ivy",
+                    },
+                    help_tags = {
+                        theme = "ivy",
                     },
                 },
                 extensions = {
@@ -87,26 +117,6 @@ return {
 
             pcall(telescope.load_extension, 'fzf')
             telescope.load_extension("ui-select")
-
-            -- vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles,
-            --     { desc = '[?] Find recently opened files' })
-            -- vim.keymap.set('n', '<leader>/', require('telescope.builtin').current_buffer_fuzzy_find,
-            --     { desc = '[/] Fuzzily search in current buffer' })
-            --
-            -- vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
-            -- vim.keymap.set('n', '<leader>sk',
-            --     function() require('telescope.builtin').keymaps(require "telescope.themes".get_dropdown()) end,
-            --     { desc = '[S]earch [K]eymaps' })
-            -- vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
-            -- vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
-            -- vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string,
-            --     { desc = '[S]earch current [W]ord' })
-            -- vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
-            -- vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics,
-            --     { desc = '[S]earch [D]iagnostics' })
-            -- vim.keymap.set('n', '<leader>sb', require('telescope.builtin').buffers, { desc = '[S]earch [B]uffers' })
-            -- vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
-            -- vim.keymap.set('n', '<leader>so', require('telescope.builtin').oldfiles, { desc = '[S]earch [O]ldfiles' })
         end,
         dependencies = {
             'nvim-lua/plenary.nvim',
