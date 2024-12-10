@@ -4,29 +4,54 @@ return {
         priority = 1000,
         lazy = false,
         keys = {
-            { "<leader>nc", function() Snacks.notifier.hide() end,         desc = "[N]otifications [C]lose" },
-            { "<leader>nh", function() Snacks.notifier.show_history() end, desc = "[N]otifications [H]istory" },
+            { "<leader>z", function() Snacks.zen() end, desc = "Toggle Zen Mode" },
+            {
+                "<leader>nc",
+                function() Snacks.notifier.hide() end,
+                desc = "Notifications Close",
+            },
+            {
+                "<leader>nh",
+                function() Snacks.notifier.show_history() end,
+                desc = "Notifications History",
+            },
         },
         opts = {
-            -- your configuration comes here
-            -- or leave it empty to use the default settings
-            -- refer to the configuration section below
-            bigfile = { enabled = true },
-            quickfile = { enabled = true },
+            zen = {
+
+            },
+            indent = {
+                indent = {
+                    char = " ",
+                    only_scope = true,
+                    only_current = true,
+                },
+                scope = {
+                    animate = {
+                        enabled = false,
+                    },
+                },
+            },
+            scroll = {
+                animate = {
+                    easing = "outCirc",
+                },
+            },
             statuscolumn = {
                 enabled = true,
                 folds = {
-                    open = true, -- show open fold icons
+                    open = true,    -- show open fold icons
                     git_hl = false, -- use Git Signs hl for fold icons
                 },
             },
             dashboard = {
                 enabled = true,
                 width = 60,
-                row = nil,                                                       -- dashboard position. nil for center
-                col = nil,                                                       -- dashboard position. nil for center
-                pane_gap = 4,                                                    -- empty columns between vertical panes
-                autokeys = "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", -- autokey sequence
+                row = nil,
+                col = nil,
+                pane_gap = 4,
+                -- autokey sequence
+                autokeys = "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
                 -- These settings are used by some built-in sections
                 preset = {
                     -- Defaults to a picker that supports `fzf-lua`, `telescope.nvim` and `mini.pick`
@@ -39,11 +64,32 @@ return {
                     keys = {
                         { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
                         { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
-                        { icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
-                        { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
-                        { icon = " ", key = "c", desc = "Config", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
+                        {
+                            icon = " ",
+                            key = "g",
+                            desc = "Find Text",
+                            action = ":lua Snacks.dashboard.pick('live_grep')"
+                        },
+                        {
+                            icon = " ",
+                            key = "r",
+                            desc = "Recent Files",
+                            action = ":lua Snacks.dashboard.pick('oldfiles')"
+                        },
+                        {
+                            icon = " ",
+                            key = "c",
+                            desc = "Config",
+                            action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})"
+                        },
                         { icon = " ", key = "s", desc = "Restore Session", section = "session" },
-                        { icon = "󰒲 ", key = "L", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
+                        {
+                            icon = "󰒲 ",
+                            key = "L",
+                            desc = "Lazy",
+                            action = ":Lazy",
+                            enabled = package.loaded.lazy ~= nil
+                        },
                         { icon = " ", key = "q", desc = "Quit", action = ":qa" },
                     },
                     -- Used by the `header` section
@@ -81,6 +127,8 @@ return {
                 },
             },
             notifier = { enabled = true },
+            bigfile = { enabled = true },
+            quickfile = { enabled = true },
 
             bufdelete = { enabled = false },
             git = { enabled = false },
@@ -90,6 +138,7 @@ return {
             terminal = { enabled = false },
             win = { enabled = false },
             words = { enabled = false },
+            scratch = { enabled = false },
         },
         init = function()
             -- Lsp loading for snacks notifier
@@ -123,6 +172,7 @@ return {
 
                     -- Create some toggle mappings
                     snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>ct")
+                    snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>ct")
                     snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>tw")
                     snacks.toggle.option("relativenumber", { name = "Relative Number" }):map(
                         "<leader>tL")
@@ -133,6 +183,10 @@ return {
                         :map("<leader>tc")
                     snacks.toggle.treesitter():map("<leader>tT")
                     snacks.toggle.inlay_hints():map("<leader>th")
+                    snacks.toggle.scroll():map("<leader>ts")
+                    snacks.toggle.indent():map("<leader>ti")
+                    snacks.toggle.dim():map("<leader>tD")
+                    -- snacks.toggle.profiler():map("<leader>tp")
                 end,
             })
         end,
