@@ -14,15 +14,19 @@ require("lazy").setup({
 }, {})
 
 -- Keymaps
+-- Terminal
+vim.keymap.set("n", "<leader>T", require "commands.terminal".ToggleTerminal,
+    { silent = true, desc = "[T]erminal" })
+
 -- Silent leader
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
 -- Spellcheck
-vim.keymap.set("n", "<leader>cf", ":setlocal spell spelllang=fr<CR>",
+vim.keymap.set("n", "<leader>cf", "<cmd>setlocal spell spelllang=fr<CR>",
     { silent = true, desc = "[C]heck [F]rench spelling" })
-vim.keymap.set("n", "<leader>ce", ":setlocal spell spelllang=en<CR>",
+vim.keymap.set("n", "<leader>ce", "<cmd>setlocal spell spelllang=en<CR>",
     { silent = true, desc = "[C]heck [E]nglish spelling" })
-vim.keymap.set("n", "<leader>cs", ":setlocal spell spelllang=es<CR>",
+vim.keymap.set("n", "<leader>cs", "<cmd>setlocal spell spelllang=es<CR>",
     { silent = true, desc = "[C]heck [S]panish spelling" })
 
 -- Clear highlight
@@ -35,7 +39,7 @@ vim.keymap.set("n", "<leader><space>", "<C-^>")
 vim.keymap.set(
     "n",
     "<leader>d",
-    function() vim.diagnostic.open_float({}) end,
+    vim.diagnostic.open_float,
     { desc = "[D]iagnostics", silent = true, }
 )
 
@@ -46,8 +50,8 @@ vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
 -- Move lines
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "J", "<cmd>m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", "<cmd>m '<-2<CR>gv=gv")
 
 -- Terminal
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>") -- Escape

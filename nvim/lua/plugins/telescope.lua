@@ -30,11 +30,6 @@ return {
                 desc = 'Search [F]iles',
             },
             {
-                '<leader>gf',
-                require('telescope.builtin').git_files,
-                desc = 'Search Git [F]iles',
-            },
-            {
                 '<leader>sw',
                 require('telescope.builtin').grep_string,
                 desc = 'Search current [W]ord',
@@ -68,6 +63,15 @@ return {
                     }
                 end,
                 desc = 'Search [P]ackages',
+            },
+            {
+                '<leader>sc',
+                function()
+                    require('telescope.builtin').find_files {
+                        cwd = vim.fn.stdpath('config')
+                    }
+                end,
+                desc = 'Search [P]onfigg',
             },
         },
         'nvim-telescope/telescope.nvim',

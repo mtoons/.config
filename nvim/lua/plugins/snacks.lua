@@ -33,6 +33,7 @@ return {
                 },
             },
             scroll = {
+                enabled = not vim.g.neovide,
                 animate = {
                     easing = "outCirc",
                 },
@@ -129,13 +130,16 @@ return {
             notifier = { enabled = true },
             bigfile = { enabled = true },
             quickfile = { enabled = true },
+            terminal = {
+                enabled = true,
+                win = { style = "float" },
+            },
 
             bufdelete = { enabled = false },
             git = { enabled = false },
             gitbrowse = { enabled = false },
             lazygit = { enabled = false },
             rename = { enabled = false },
-            terminal = { enabled = false },
             win = { enabled = false },
             words = { enabled = false },
             scratch = { enabled = false },

@@ -22,7 +22,25 @@ return {
                 }
             },
             sections = {
-                lualine_a = { 'mode' },
+                lualine_a = {
+                    {
+                        'mode',
+                        fmt = function(str)
+                            if str == "NORMAL" then
+                                return "ormal"
+                            elseif str == "INSERT" then
+                                return "󰗧nsert"
+                            elseif str == "VISUAL" then
+                                return "isual"
+                            elseif str == "V-LINE" then
+                                return " line"
+                            end
+                            return str
+                        end,
+                        -- icons_enabled = true,
+                        -- icon = '',
+                    },
+                },
                 lualine_b = {
                     'branch',
                     'diff',
