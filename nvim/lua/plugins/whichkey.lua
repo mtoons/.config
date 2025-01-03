@@ -4,6 +4,9 @@ return {
         event = "VeryLazy",
         opts = {
             preset = "modern",
+            win = {
+                border = "none",
+            },
         },
         init = function()
             local wk = require 'which-key'

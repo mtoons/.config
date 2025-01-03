@@ -166,8 +166,26 @@ return {
                     { name = 'calc' },
                 },
                 window = {
-                    completion = cmp.config.window.bordered(),
-                    documentation = cmp.config.window.bordered(),
+                    completion = {
+                        border = 'none',
+                        winhighlight =
+                        'Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None',
+                        zindex = 1001,
+                        scrolloff = 0,
+                        col_offset = 0,
+                        side_padding = 1,
+                        scrollbar = false,
+                    },
+                    documentation = {
+                        border = 'none',
+                        winhighlight =
+                        'Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None',
+                        zindex = 1001,
+                        scrolloff = 0,
+                        col_offset = 0,
+                        side_padding = 0,
+                        scrollbar = false,
+                    },
                 },
             }
 
