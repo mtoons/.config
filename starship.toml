@@ -26,7 +26,7 @@ disabled = false
 # An alternative to the username module which displays a symbol that
 # represents the current operating system
 [os]
-style = "mantle"
+style = "text"
 format = "[$symbol ]($style)"
 disabled = false
 

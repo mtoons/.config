@@ -3,32 +3,32 @@ return {
         keys = {
             {
                 '<leader>ss',
-                ":Telescope persisted theme=dropdown<CR>",
+                "<cmd>Telescope persisted theme=dropdown<CR>",
                 desc = '[S]earch [S]essions',
             },
             {
                 '<leader>Ss',
-                ":SessionStart<CR>",
+                "<cmd>SessionStart<CR>",
                 desc = '[S]essions [S]tart',
             },
             {
                 '<leader>Sb',
-                ":SessionStop<CR>",
+                "<cmd>SessionStop<CR>",
                 desc = '[S]essions [B]reak',
             },
             {
                 '<leader>Sw',
-                ":SessionSave<CR>",
+                "<cmd>SessionSave<CR>",
                 desc = '[S]essions [W]rite',
             },
             {
                 '<leader>Sl',
-                ":SessionLoad<CR>",
+                "<cmd>SessionLoad<CR>",
                 desc = '[S]essions [L]oad',
             },
             {
                 '<leader>Sd',
-                ":SessionDelete<CR>",
+                "<cmd>SessionDelete<CR>",
                 desc = '[S]essions [D]elete',
             },
         },
