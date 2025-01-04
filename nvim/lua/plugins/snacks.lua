@@ -1,9 +1,12 @@
 return {
     {
         "folke/snacks.nvim",
-        priority = 1000,
-        lazy = false,
-        keys = {
+        dependencies = {
+            { "echasnovski/mini.icons", version = false, opts = {} },
+        },
+        priority     = 1000,
+        lazy         = false,
+        keys         = {
             { "<leader>z", function() Snacks.zen() end, desc = "Toggle Zen Mode" },
             {
                 "<leader>nc",
@@ -16,7 +19,7 @@ return {
                 desc = "Notifications History",
             },
         },
-        opts = {
+        opts         = {
             zen = {
 
             },
@@ -52,7 +55,7 @@ return {
                 col = nil,
                 pane_gap = 4,
                 -- autokey sequence
-                autokeys = "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
+                autokeys = "abdehijkmoptuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
                 -- These settings are used by some built-in sections
                 preset = {
                     -- Defaults to a picker that supports `fzf-lua`, `telescope.nvim` and `mini.pick`
@@ -83,10 +86,15 @@ return {
                             desc = "Config",
                             action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})"
                         },
-                        { icon = " ", key = "s", desc = "Restore Session", section = "session" },
+                        {
+                            icon = " ",
+                            key = "s",
+                            desc = "Restore Session",
+                            action = ":Telescope persisted theme=dropdown"
+                        },
                         {
                             icon = "󰒲 ",
-                            key = "L",
+                            key = "l",
                             desc = "Lazy",
                             action = ":Lazy",
                             enabled = package.loaded.lazy ~= nil
@@ -102,29 +110,19 @@ return {
 ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
 ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝]],
                 },
-                -- item field formatters
-                formats = {
-                    icon = function(item)
-                        if item.file and item.icon == "file" or item.icon == "directory" then
-                            return require "mini".icon(item.file, item.icon)
-                        end
-                        return { item.icon, width = 2, hl = "icon" }
-                    end,
-                    footer = { "%s", align = "center" },
-                    header = { "%s", align = "center" },
-                    file = function(item, ctx)
-                        local fname = vim.fn.fnamemodify(item.file, ":~")
-                        fname = ctx.width and #fname > ctx.width and vim.fn.pathshorten(fname) or
-                            fname
-                        local dir, file = fname:match("^(.*)/(.+)$")
-                        return dir and { { dir .. "/", hl = "dir" }, { file, hl = "file" } } or
-                            { { fname, hl = "file" } }
-                    end,
-                },
                 sections = {
                     { section = "header", hl = "icon" },
                     { section = "keys",   gap = 1,    padding = 1 },
                     { section = "startup" },
+                    {
+                        pane = 2,
+                        icon = " ",
+                        title = "Recent Files",
+                        section = "recent_files",
+                        indent = 2,
+                        padding = 1,
+                        limit = 20
+                    },
                 },
             },
             notifier = { enabled = true },
@@ -144,7 +142,7 @@ return {
             words = { enabled = false },
             scratch = { enabled = false },
         },
-        init = function()
+        init         = function()
             -- Lsp loading for snacks notifier
             vim.api.nvim_create_autocmd("LspProgress", {
                 ---@param ev {data: {client_id: integer, params: lsp.ProgressParams}}
