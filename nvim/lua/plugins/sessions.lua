@@ -66,7 +66,6 @@ return {
         dependencies = {
             "ibhagwan/fzf-lua",
         },
-        config = true,
         init = function()
             local possession = require("nvim-possession")
             vim.keymap.set("n", "<leader>ss", function()

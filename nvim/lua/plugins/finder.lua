@@ -179,6 +179,13 @@ return {
             { "<leader>sh", "<cmd>FzfLua help_tags<cr>",            desc = "Search [H]elp" },
             { "<leader>sk", "<cmd>FzfLua keymaps<cr>",              desc = "Search [K]eymaps" },
             { "<leader>sq", "<cmd>FzfLua quickfix<cr>",             desc = "Search [Q]uickfix" },
+            {
+                "<leader>sc",
+                function()
+                    require('fzf-lua').files { cwd = vim.fn.stdpath('config') }
+                end,
+                desc = "Search [C]onfig"
+            }
         },
     }
 }
