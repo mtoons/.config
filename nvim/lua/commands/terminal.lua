@@ -14,6 +14,7 @@ local function create_floating_window(opts)
         col = math.floor((vim.o.columns - width) / 2),
         row = math.floor((vim.o.lines - height) / 2),
         style = "minimal",
+        border = "none",
     }
 
     local buf = nil

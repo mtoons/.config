@@ -1,5 +1,10 @@
 return {
     {
+        "olimorris/persisted.nvim",
+        enabled = Finder == "telescope",
+        dependencies = {
+            "nvim-telescope/telescope.nvim"
+        },
         keys = {
             {
                 '<leader>ss',
@@ -32,14 +37,10 @@ return {
                 desc = '[S]essions [D]elete',
             },
         },
-        "olimorris/persisted.nvim",
         -- lazy = true, -- make sure the plugin is always loaded at startup
         -- config = true,
         opts = {
             autostart = false,
-        },
-        dependencies = {
-            "nvim-telescope/telescope.nvim"
         },
         init = function()
             require("telescope").load_extension("persisted")
@@ -58,5 +59,27 @@ return {
         end,
         -- keys = {
         -- },
-    }
+    },
+    {
+        "gennaro-tedesco/nvim-possession",
+        enabled = Finder == "fzf-lua",
+        dependencies = {
+            "ibhagwan/fzf-lua",
+        },
+        init = function()
+            local possession = require("nvim-possession")
+            vim.keymap.set("n", "<leader>ss", function()
+                possession.list()
+            end, { desc = "Search [Sessions]" })
+            vim.keymap.set("n", "<leader>Sn", function()
+                possession.new()
+            end, { desc = "Session [N]ew" })
+            vim.keymap.set("n", "<leader>Su", function()
+                possession.update()
+            end, { desc = "Session [U]pdate" })
+            vim.keymap.set("n", "<leader>Sd", function()
+                possession.delete()
+            end, { desc = "Session [D]elete" })
+        end,
+    },
 }

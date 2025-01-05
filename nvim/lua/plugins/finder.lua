@@ -1,5 +1,8 @@
 return {
     {
+        'nvim-telescope/telescope.nvim',
+        enabled = Finder == "telescope",
+        branch = '0.1.x',
         keys = {
             {
                 '<leader>?',
@@ -74,8 +77,6 @@ return {
                 desc = 'Search [P]onfigg',
             },
         },
-        'nvim-telescope/telescope.nvim',
-        branch = '0.1.x',
         config = function()
             local telescope = require 'telescope'
             telescope.setup {
@@ -143,4 +144,48 @@ return {
             { 'nvim-tree/nvim-web-devicons',            enabled = vim.g.have_nerd_font },
         },
     },
+    {
+        "ibhagwan/fzf-lua",
+        enabled = Finder == "fzf-lua",
+        dependencies = { "echasnovski/mini.icons" },
+        cmd = "FzfLua",
+        keys = {
+            {
+                "<c-j>",
+                "<c-j>",
+                ft = "fzf",
+                mode =
+                "t",
+                nowait = true
+            },
+            {
+                "<c-k>",
+                "<c-k>",
+                ft = "fzf",
+                mode =
+                "t",
+                nowait = true
+            },
+            {
+                "<leader>sb",
+                "<cmd>FzfLua buffers sort_mru=true sort_lastused=true<cr>",
+                desc = ">Search [B]uffers"
+            },
+            { "<leader>sf", "<cmd>FzfLua files<cr>",                desc = "Search [F]iles" },
+            { "<leader>sg", "<cmd>FzfLua grep<cr>",                 desc = "Search [G]rep" },
+            { "<leader>sr", "<cmd>FzfLua oldfiles<cr>",             desc = "Search [R]ecent" },
+            { '<leader>s"', "<cmd>FzfLua registers<cr>",            desc = "Search Registers" },
+            { "<leader>sd", "<cmd>FzfLua diagnostics_document<cr>", desc = "Document Diagnostics" },
+            { "<leader>sh", "<cmd>FzfLua help_tags<cr>",            desc = "Search [H]elp" },
+            { "<leader>sk", "<cmd>FzfLua keymaps<cr>",              desc = "Search [K]eymaps" },
+            { "<leader>sq", "<cmd>FzfLua quickfix<cr>",             desc = "Search [Q]uickfix" },
+            {
+                "<leader>sc",
+                function()
+                    require('fzf-lua').files { cwd = vim.fn.stdpath('config') }
+                end,
+                desc = "Search [C]onfig"
+            }
+        },
+    }
 }
