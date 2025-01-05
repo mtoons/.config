@@ -91,7 +91,13 @@ return {
                             icon = " ",
                             key = "s",
                             desc = "Restore Session",
-                            action = ":Telescope persisted theme=dropdown"
+                            action = function()
+                                if Finder == "telescope" then
+                                    require "persisted".select()
+                                elseif Finder == "fzf-lua" then
+                                    require "nvim-possession".list()
+                                end
+                            end
                         },
                         {
                             icon = "󰒲 ",
