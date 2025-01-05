@@ -25,14 +25,15 @@ return {
             },
             indent = {
                 indent = {
-                    char = " ",
+                    enabled = false,
                     only_scope = true,
                     only_current = true,
                 },
                 scope = {
-                    animate = {
-                        enabled = false,
-                    },
+                    only_current = true,
+                },
+                animate = {
+                    enabled = false,
                 },
             },
             scroll = {
@@ -173,7 +174,6 @@ return {
                     vim.print = _G.dd -- Override print to use snacks for `:=` command
 
                     -- Create some toggle mappings
-                    snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>ct")
                     snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>ct")
                     snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>tw")
                     snacks.toggle.option("relativenumber", { name = "Relative Number" }):map(
