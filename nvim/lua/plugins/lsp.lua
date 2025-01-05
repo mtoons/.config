@@ -59,6 +59,12 @@ return {
             capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
             local servers = {
+                -- Haskell
+                hls = {
+                    filetypes = { 'haskell', 'lhaskell', 'cabal' },
+                    command = { "haskell-language-server-wrapper", "--lsp" },
+                },
+
                 -- C & C++
                 clangd = {
                     root_dir = function(fname)
@@ -91,7 +97,7 @@ return {
                 },
 
                 -- Rust
-                rust_analyzer = {
+                rustt_analyzer = {
                     settings = {
                         ["rust-analyzer"] = {
                             checkOnSave = { enable = true, },
