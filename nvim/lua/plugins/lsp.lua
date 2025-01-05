@@ -108,7 +108,7 @@ return {
                 },
 
                 -- Rust
-                rustt_analyzer = {
+                rust_analyzer = {
                     settings = {
                         ["rust-analyzer"] = {
                             checkOnSave = { enable = true, },
