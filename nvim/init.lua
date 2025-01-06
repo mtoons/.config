@@ -172,6 +172,9 @@ vim.keymap.set({ "n", "i" }, "<C-->", function()
     ResizeGuiFont(-1)
 end, { noremap = true, silent = true })
 
+-- Neovide
+vim.g.neovide_floating_corner_radius = 0.3
+
 -- Autocmds
 vim.api.nvim_create_autocmd("TextYankPost", {
     desc = "Highlight on yank",
