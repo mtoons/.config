@@ -172,7 +172,7 @@ return {
                 desc = ">Search [B]uffers"
             },
             { "<leader>sf", "<cmd>FzfLua files<cr>",                desc = "Search [F]iles" },
-            { "<leader>sg", "<cmd>FzfLua grep<cr>",                 desc = "Search [G]rep" },
+            { "<leader>sg", "<cmd>FzfLua live_grep<cr>",            desc = "Search [G]rep" },
             { "<leader>sr", "<cmd>FzfLua oldfiles<cr>",             desc = "Search [R]ecent" },
             { '<leader>s"', "<cmd>FzfLua registers<cr>",            desc = "Search Registers" },
             { "<leader>sd", "<cmd>FzfLua diagnostics_document<cr>", desc = "Document Diagnostics" },
