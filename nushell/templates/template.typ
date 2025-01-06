@@ -1,6 +1,17 @@
 #import "@local/catppuccin:0.1.0": catppuccin, themes, get-palette
-#let theme = sys.inputs.at("flavor", default: themes.mocha)
-#show: catppuccin.with(theme)
+#let impression = false
+#let theme = if impression {
+  sys.inputs.at("flavor", default: themes.latte)
+} else {
+  sys.inputs.at("flavor", default: themes.mocha)
+}
+#show: if impression {
+  it => {
+    it
+  }
+} else {
+  catppuccin.with(theme)
+}
 #let palette = get-palette(theme)
 #let colors = palette.colors
 

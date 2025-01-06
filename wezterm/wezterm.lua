@@ -31,7 +31,7 @@ config.win32_system_backdrop = 'Acrylic'
 config.font = wezterm.font 'VictorMono Nerd Font'
 config.font_size = 15
 config.adjust_window_size_when_changing_font_size = false
-config.window_decorations = "RESIZE"
+-- config.window_decorations = "RESIZE"
 wezterm.on("toggle-colorscheme", function(window, pane)
     local overrides = window:get_config_overrides() or {}
     if overrides.window_background_opacity == 1 then
