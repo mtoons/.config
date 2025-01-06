@@ -33,25 +33,25 @@ return {
                         vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
                     end
 
-                    if Finder == "telescope" then
-                        -- Jump to the definition of the word under your cursor.
-                        map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
-                        -- Find references for the word under your cursor.
-                        map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
-                        -- Jump to the implementation of the word under your cursor.
-                        map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
-                        -- Jump to the type of the word under your cursor.
-                        map("gtd", require("telescope.builtin").lsp_type_definitions, "[G]oto [T]ype [D]efinition")
-                    elseif Finder == "fzf-lua" then
-                        -- Jump to the definition of the word under your cursor.
-                        map("gd", "<cmd>FzfLua lsp_definitions<cr>", "[G]oto [D]efinition")
-                        -- Find references for the word under your cursor.
-                        map("gr", "<cmd>FzfLua lsp_references<cr>", "[G]oto [R]eferences")
-                        -- Jump to the implementation of the word under your cursor.
-                        map("gI", "<cmd>FzfLua lsp_implementations<cr>", "[G]oto [I]mplementation")
-                        -- Jump to the type of the word under your cursor.
-                        map("gtd", "<cmd>FzfLua lsp_typedefs<cr>", "[G]oto [T]ype [D]efinition")
-                    end
+                    -- if Finder == "telescope" then
+                    --     -- Jump to the definition of the word under your cursor.
+                    --     map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
+                    --     -- Find references for the word under your cursor.
+                    --     map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+                    --     -- Jump to the implementation of the word under your cursor.
+                    --     map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
+                    --     -- Jump to the type of the word under your cursor.
+                    --     map("gtd", require("telescope.builtin").lsp_type_definitions, "[G]oto [T]ype [D]efinition")
+                    -- elseif Finder == "fzf-lua" then
+                    -- Jump to the definition of the word under your cursor.
+                    map("gd", "<cmd>FzfLua lsp_definitions<cr>", "[G]oto [D]efinition")
+                    -- Find references for the word under your cursor.
+                    map("gr", "<cmd>FzfLua lsp_references<cr>", "[G]oto [R]eferences")
+                    -- Jump to the implementation of the word under your cursor.
+                    map("gI", "<cmd>FzfLua lsp_implementations<cr>", "[G]oto [I]mplementation")
+                    -- Jump to the type of the word under your cursor.
+                    map("gtd", "<cmd>FzfLua lsp_typedefs<cr>", "[G]oto [T]ype [D]efinition")
+                    -- end
                     -- Rename the variable under your cursor.
                     map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
                     -- Execute a code action, usually your cursor needs to be on top of an error
