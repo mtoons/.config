@@ -91,13 +91,14 @@ return {
                             icon = " ",
                             key = "s",
                             desc = "Restore Session",
-                            action = function()
-                                if Finder == "telescope" then
-                                    require "persisted".select()
-                                elseif Finder == "fzf-lua" then
+                            action =
+                                function()
+                                    -- if Finder == "telescope" then
+                                    --     require "persisted".select()
+                                    -- elseif Finder == "fzf-lua" then
                                     require "nvim-possession".list()
-                                end
-                            end
+                                    -- end
+                                end,
                         },
                         {
                             icon = "󰒲 ",
