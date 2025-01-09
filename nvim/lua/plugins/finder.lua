@@ -187,5 +187,25 @@ return {
                 desc = "Search [C]onfig"
             }
         },
+        opts = {
+            -- UI Options
+            winopts = {
+                border = "none",
+            preview = {
+                border = "none"
+            },     -- Neovim keymaps / fzf binds
+            },
+            keymap = {},
+            -- Fzf "accept" binds
+            actions = {},
+            -- Fzf CLI flags
+            fzf_opts = {},
+            -- Fzf `--color` specification
+            fzf_colors = {},
+            -- Highlights
+            hls = {},
+            -- Previewers options
+            previewers = {},
+        },
     },
 }

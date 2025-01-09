@@ -1,4 +1,6 @@
 #import "@local/catppuccin:0.1.0": catppuccin, themes, get-palette
+#import "@preview/cetz:0.3.1": canvas, draw
+#import "@local/cetz-plot:18.0.0": plot
 #let impression = false
 #let theme = if impression {
   sys.inputs.at("flavor", default: themes.latte)
