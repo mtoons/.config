@@ -40,26 +40,28 @@ return {
                 custom_highlights = {},
                 default_integrations = true,
                 integrations = {
-                    dashboard = true,
+                    dashboard = false,
                     cmp = true,
                     gitsigns = true,
                     nvimtree = false,
                     treesitter = true,
                     notify = false,
                     which_key = true,
-                    mason = true,
-                    notifier = true,
-                    fidget = true,
+                    mason = false,
+                    notifier = false,
+                    fidget = false,
                     markdown = true,
-                    render_markdown = true,
+                    render_markdown = false,
                     mini = {
                         enabled = false,
                         indentscope_color = "",
                     },
-                    telescope = {
-                        enabled = true,
-                        style = "classic"
-                    },
+                    -- telescope = {
+                    --     enabled = true,
+                    --     style = "classic"
+                    -- },
+                    fzf = true,
+                    snacks = true,
                     native_lsp = {
                         enabled = true,
                         virtual_text = {

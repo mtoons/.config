@@ -191,21 +191,50 @@ return {
             -- UI Options
             winopts = {
                 border = "none",
-            preview = {
-                border = "none"
-            },     -- Neovim keymaps / fzf binds
+                preview = {
+                    border = "none"
+                },
+                backdrop = 100
             },
+            -- Neovim keymaps / fzf binds
             keymap = {},
             -- Fzf "accept" binds
             actions = {},
             -- Fzf CLI flags
-            fzf_opts = {},
+            fzf_opts = {
+                ["--no-scrollbar"] = true,
+                ["--pointer=\"\" "] = true,
+                ["--no-separator"] = true,
+            },
             -- Fzf `--color` specification
-            fzf_colors = {},
+            fzf_colors = {
+                ["bg+"] = "#313244",
+                -- ["bg"] = "#1e1e2e",
+                ["spinner"] = "#1e1e2e",
+                ["hl"] = "#f38ba8",
+                ["fg"] = "#cdd6f4",
+                ["header"] = "#f38ba8",
+                ["info"] = "#1e1e2e",
+                ["pointer"] = "#f5e0dc",
+                ["marker"] = "#b4befe",
+                ["fg+"] = "#cdd6f4",
+                ["prompt"] = "#cba6f7",
+                ["hl+"] = "#f38ba8",
+                ["selected-bg"] = "#45475a",
+                ["separator"] = "#6c7086",
+            },
             -- Highlights
             hls = {},
             -- Previewers options
             previewers = {},
+            defaults = {
+                file_icons = "mini",
+            },
+            files = {
+                actions = {
+                    ["ctrl-g"] = false,
+                },
+            },
         },
     },
 }
