@@ -191,21 +191,31 @@ return {
             -- UI Options
             winopts = {
                 border = "none",
-            preview = {
-                border = "none"
-            },     -- Neovim keymaps / fzf binds
+                preview = {
+                    border = "none"
+                },
             },
+            -- Neovim keymaps / fzf binds
             keymap = {},
             -- Fzf "accept" binds
             actions = {},
             -- Fzf CLI flags
-            fzf_opts = {},
+            fzf_opts = {
+                ["--walker-skip=.git,build,zig-cache,zig-out"] = true,
+            },
             -- Fzf `--color` specification
             fzf_colors = {},
             -- Highlights
             hls = {},
             -- Previewers options
             previewers = {},
+            files = {
+                find_opts = [[-type f -not -path '*/\.git/*' -printf '%P\n']],
+                rg_opts   =
+                "--color=never --files --follow -g \"!.git\" -g \"!*.pdf\" -g \"!*.odt\" -g \"!zig-cache\" -g \"!build\" -g \"!zig-out\"",
+                fd_opts   =
+                [[--color=never --type f --follow --exclude .git --exclude zig-cache --exclude build --exclude zig-out --exclude *.pdf --exclude *.odt]],
+            }
         },
     },
 }

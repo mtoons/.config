@@ -89,7 +89,7 @@ return {
                             "build.ninja"
                         )(fname) or require("lspconfig.util").root_pattern("compile_commands.json", "compile_flags.txt")(
                             fname
-                        ) or require("lspconfig.util").find_git_ancestor(fname)
+                        ) or vim.fs.dirname(vim.fs.find('.git', { path = fname, upward = true })[1])
                     end,
                     cmd = {
                         "clangd",
@@ -132,7 +132,12 @@ return {
                 -- },
 
                 -- Zig
-                zls = {},
+                zls = {
+                    filetypes = { "zig", "zir", "zon" },
+                    settings = {
+                        ["enable_build_on_save"] = true,
+                    },
+                },
 
                 -- Markdown
                 marksman = {},
