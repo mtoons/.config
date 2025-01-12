@@ -66,6 +66,22 @@ return {
         dependencies = {
             "ibhagwan/fzf-lua",
         },
+        opts = {
+            autosave = false,
+            winopts = {
+                border = "none",
+                preview = {
+                    border = "none"
+                },
+                backdrop = 100
+            },
+            fzf_hls = { -- highlight groups for the sessions and preview windows
+                normal = "Normal",
+                preview_normal = "Normal",
+                border = "none",
+                preview_border = "none",
+            },
+        },
         init = function()
             local possession = require("nvim-possession")
             possession.setup({})

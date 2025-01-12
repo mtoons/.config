@@ -895,6 +895,8 @@ $env.config = {
 }
 
 
+let os = sys host | get name;
+alias s = sudo nu -c
 alias icat = wezterm imgcat
 alias c = clear
 alias v = nvim
