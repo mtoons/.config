@@ -17,7 +17,7 @@ return {
         "neovim/nvim-lspconfig",
         dependencies = {
             -- Allows extra capabilities provided by nvim-cmp
-            "hrsh7th/cmp-nvim-lsp",
+            'saghen/blink.cmp'
         },
         config = function()
             vim.api.nvim_create_autocmd("LspAttach", {
@@ -33,16 +33,6 @@ return {
                         vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
                     end
 
-                    -- if Finder == "telescope" then
-                    --     -- Jump to the definition of the word under your cursor.
-                    --     map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
-                    --     -- Find references for the word under your cursor.
-                    --     map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
-                    --     -- Jump to the implementation of the word under your cursor.
-                    --     map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
-                    --     -- Jump to the type of the word under your cursor.
-                    --     map("gtd", require("telescope.builtin").lsp_type_definitions, "[G]oto [T]ype [D]efinition")
-                    -- elseif Finder == "fzf-lua" then
                     -- Jump to the definition of the word under your cursor.
                     map("gd", "<cmd>FzfLua lsp_definitions<cr>", "[G]oto [D]efinition")
                     -- Find references for the word under your cursor.
@@ -62,12 +52,12 @@ return {
                 end,
             })
 
-            -- LSP servers and clients are able to communicate to each other what features they support.
-            --  By default, Neovim doesn't support everything that is in the LSP specification.
-            --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
-            --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
-            local capabilities = vim.lsp.protocol.make_client_capabilities()
-            capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+            -- -- LSP servers and clients are able to communicate to each other what features they support.
+            -- --  By default, Neovim doesn't support everything that is in the LSP specification.
+            -- --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
+            -- --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
+            -- local capabilities = vim.lsp.protocol.make_client_capabilities()
+            -- capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
             local servers = {
                 -- Haskell
@@ -188,9 +178,10 @@ return {
                     single_file_support = true,
                 },
             }
-            for server, opts in pairs(servers) do
-                opts.capabilities = vim.tbl_deep_extend("force", {}, capabilities, opts.capabilities or {})
-                require 'lspconfig'[server].setup(opts)
+            for server, config in pairs(servers) do
+                config.capabilities = require 'blink.cmp'.get_lsp_capabilities(config.capabilities)
+                -- config.capabilities = vim.tbl_deep_extend("force", {}, capabilities, config.capabilities or {})
+                require 'lspconfig'[server].setup(config)
             end
         end,
     },

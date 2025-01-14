@@ -40,8 +40,9 @@ return {
                 custom_highlights = {},
                 default_integrations = true,
                 integrations = {
+                    blink_cmp = true,
                     dashboard = false,
-                    cmp = true,
+                    cmp = false,
                     gitsigns = true,
                     nvimtree = false,
                     treesitter = true,
