@@ -35,6 +35,11 @@ return {
                 icon = '󰦛',
             })
             wk.add({
+                '<leader>e',
+                desc = '[E]xperience',
+                icon = '󰙨',
+            })
+            wk.add({
                 '<leader><space>',
                 desc = 'alternate buffer',
                 icon = '󰓢',
