@@ -1,0 +1,29 @@
+return {
+    -- {
+    --     "nvim-neotest/neotest",
+    --     dependencies = {
+    --         "lawrence-laz/neotest-zig",
+    --         "rouge8/neotest-rust",
+    --
+    --         "nvim-neotest/nvim-nio",
+    --         "nvim-lua/plenary.nvim",
+    --         "antoinemadec/FixCursorHold.nvim",
+    --         "nvim-treesitter/nvim-treesitter"
+    --     },
+    --     -- keys = {
+    --     --     { "<leader>er", require "neotest".run.run, desc = "Experience [R]un" },
+    --     -- },
+    --     opts = {
+    --         adapters = {
+    --             require("neotest-zig")({
+    --                 dap = {
+    --                     adapter = "lldb",
+    --                 },
+    --             }),
+    --             require("neotest-rust") {
+    --                 dap_adapter = "lldb",
+    --             },
+    --         },
+    --     },
+    -- },
+}
