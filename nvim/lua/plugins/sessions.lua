@@ -60,43 +60,43 @@ return {
     --     -- keys = {
     --     -- },
     -- },
-    {
-        "gennaro-tedesco/nvim-possession",
-        enabled = true,
-        dependencies = {
-            "ibhagwan/fzf-lua",
-        },
-        opts = {
-            autosave = false,
-            winopts = {
-                border = "none",
-                preview = {
-                    border = "none"
-                },
-                backdrop = 100
-            },
-            fzf_hls = { -- highlight groups for the sessions and preview windows
-                normal = "Normal",
-                preview_normal = "Normal",
-                border = "none",
-                preview_border = "none",
-            },
-        },
-        init = function()
-            local possession = require("nvim-possession")
-            possession.setup({})
-            vim.keymap.set("n", "<leader>ss", function()
-                possession.list()
-            end, { desc = "Search [Sessions]" })
-            vim.keymap.set("n", "<leader>Sn", function()
-                possession.new()
-            end, { desc = "Session [N]ew" })
-            vim.keymap.set("n", "<leader>Su", function()
-                possession.update()
-            end, { desc = "Session [U]pdate" })
-            vim.keymap.set("n", "<leader>Sd", function()
-                possession.delete()
-            end, { desc = "Session [D]elete" })
-        end,
-    },
+    -- {
+    --     "gennaro-tedesco/nvim-possession",
+    --     enabled = true,
+    --     dependencies = {
+    --         "ibhagwan/fzf-lua",
+    --     },
+    --     opts = {
+    --         autosave = false,
+    --         winopts = {
+    --             border = "none",
+    --             preview = {
+    --                 border = "none"
+    --             },
+    --             backdrop = 100
+    --         },
+    --         fzf_hls = { -- highlight groups for the sessions and preview windows
+    --             normal = "Normal",
+    --             preview_normal = "Normal",
+    --             border = "none",
+    --             preview_border = "none",
+    --         },
+    --     },
+    --     init = function()
+    --         local possession = require("nvim-possession")
+    --         possession.setup({})
+    --         vim.keymap.set("n", "<leader>ss", function()
+    --             possession.list()
+    --         end, { desc = "Search [Sessions]" })
+    --         vim.keymap.set("n", "<leader>Sn", function()
+    --             possession.new()
+    --         end, { desc = "Session [N]ew" })
+    --         vim.keymap.set("n", "<leader>Su", function()
+    --             possession.update()
+    --         end, { desc = "Session [U]pdate" })
+    --         vim.keymap.set("n", "<leader>Sd", function()
+    --             possession.delete()
+    --         end, { desc = "Session [D]elete" })
+    --     end,
+    -- },
 }

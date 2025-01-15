@@ -144,103 +144,103 @@ return {
     --         { 'nvim-tree/nvim-web-devicons',            enabled = vim.g.have_nerd_font },
     --     },
     -- },
-    {
-        "ibhagwan/fzf-lua",
-        enabled = Finder == "fzf-lua",
-        dependencies = { "echasnovski/mini.icons" },
-        cmd = "FzfLua",
-        keys = {
-            {
-                "<c-j>",
-                "<c-j>",
-                ft = "fzf",
-                mode =
-                "t",
-                nowait = true
-            },
-            {
-                "<c-k>",
-                "<c-k>",
-                ft = "fzf",
-                mode =
-                "t",
-                nowait = true
-            },
-            {
-                "<leader>sb",
-                "<cmd>FzfLua buffers sort_mru=true sort_lastused=true<cr>",
-                desc = ">Search [B]uffers"
-            },
-            { "<leader>sf", "<cmd>FzfLua files<cr>",                desc = "Search [F]iles" },
-            { "<leader>sg", "<cmd>FzfLua live_grep<cr>",            desc = "Search [G]rep" },
-            { "<leader>sr", "<cmd>FzfLua oldfiles<cr>",             desc = "Search [R]ecent" },
-            { '<leader>s"', "<cmd>FzfLua registers<cr>",            desc = "Search Registers" },
-            { "<leader>sd", "<cmd>FzfLua diagnostics_document<cr>", desc = "Document Diagnostics" },
-            { "<leader>sh", "<cmd>FzfLua help_tags<cr>",            desc = "Search [H]elp" },
-            { "<leader>sk", "<cmd>FzfLua keymaps<cr>",              desc = "Search [K]eymaps" },
-            { "<leader>sq", "<cmd>FzfLua quickfix<cr>",             desc = "Search [Q]uickfix" },
-            {
-                "<leader>sc",
-                function()
-                    require('fzf-lua').files { cwd = vim.fn.stdpath('config') }
-                end,
-                desc = "Search [C]onfig"
-            }
-        },
-        opts = {
-            -- UI Options
-            winopts = {
-                border = "none",
-                preview = {
-                    border = "none"
-                },
-                backdrop = 100
-            },
-            -- Neovim keymaps / fzf binds
-            keymap = {},
-            -- Fzf "accept" binds
-            actions = {},
-            -- Fzf CLI flags
-            fzf_opts = {
-                ["--walker-skip=.git,build,zig-cache,zig-out"] = true,
-                ["--no-scrollbar"] = true,
-                ["--pointer=\"\" "] = true,
-                ["--no-separator"] = true,
-            },
-            -- Fzf `--color` specification
-            fzf_colors = {
-                ["bg+"] = "#313244",
-                -- ["bg"] = "#1e1e2e",
-                ["spinner"] = "#1e1e2e",
-                ["hl"] = "#f38ba8",
-                ["fg"] = "#cdd6f4",
-                ["header"] = "#f38ba8",
-                ["info"] = "#1e1e2e",
-                ["pointer"] = "#f5e0dc",
-                ["marker"] = "#b4befe",
-                ["fg+"] = "#cdd6f4",
-                ["prompt"] = "#cba6f7",
-                ["hl+"] = "#f38ba8",
-                ["selected-bg"] = "#45475a",
-                ["separator"] = "#6c7086",
-            },
-            -- Highlights
-            hls = {},
-            -- Previewers options
-            previewers = {},
-            files = {
-                find_opts = [[-type f -not -path '*/\.git/*' -printf '%P\n']],
-                rg_opts   =
-                "--color=never --files --follow -g \"!.git\" -g \"!*.pdf\" -g \"!*.odt\" -g \"!zig-cache\" -g \"!build\" -g \"!zig-out\"",
-                fd_opts   =
-                [[--color=never --type f --follow --exclude .git --exclude zig-cache --exclude build --exclude zig-out --exclude *.pdf --exclude *.odt]],
-                actions   = {
-                    ["ctrl-g"] = false,
-                },
-            },
-            defaults = {
-                file_icons = "mini",
-            },
-        },
-    },
+    -- {
+    --     "ibhagwan/fzf-lua",
+    --     enabled = Finder == "fzf-lua",
+    --     dependencies = { "echasnovski/mini.icons" },
+    --     cmd = "FzfLua",
+    --     keys = {
+    --         -- {
+    --         --     "<c-j>",
+    --         --     "<c-j>",
+    --         --     ft = "fzf",
+    --         --     mode =
+    --         --     "t",
+    --         --     nowait = true
+    --         -- },
+    --         -- {
+    --         --     "<c-k>",
+    --         --     "<c-k>",
+    --         --     ft = "fzf",
+    --         --     mode =
+    --         --     "t",
+    --         --     nowait = true
+    --         -- },
+    --         -- {
+    --         --     "<leader>sb",
+    --         --     "<cmd>FzfLua buffers sort_mru=true sort_lastused=true<cr>",
+    --         --     desc = ">Search [B]uffers"
+    --         -- },
+    --         -- { "<leader>sf", "<cmd>FzfLua files<cr>",                desc = "Search [F]iles" },
+    --         -- { "<leader>sg", "<cmd>FzfLua live_grep<cr>",            desc = "Search [G]rep" },
+    --         -- { "<leader>sr", "<cmd>FzfLua oldfiles<cr>",             desc = "Search [R]ecent" },
+    --         -- { '<leader>s"', "<cmd>FzfLua registers<cr>",            desc = "Search Registers" },
+    --         -- { "<leader>sd", "<cmd>FzfLua diagnostics_document<cr>", desc = "Document Diagnostics" },
+    --         -- { "<leader>sh", "<cmd>FzfLua help_tags<cr>",            desc = "Search [H]elp" },
+    --         -- { "<leader>sk", "<cmd>FzfLua keymaps<cr>",  desc = "Search [K]eymaps" },
+    --         -- { "<leader>sq", "<cmd>FzfLua quickfix<cr>", desc = "Search [Q]uickfix" },
+    --         -- {
+    --         --     "<leader>sc",
+    --         --     function()
+    --         --         require('fzf-lua').files { cwd = vim.fn.stdpath('config') }
+    --         --     end,
+    --         --     desc = "Search [C]onfig"
+    --         -- }
+    --     },
+    --     opts = {
+    --         -- UI Options
+    --         winopts = {
+    --             border = "none",
+    --             preview = {
+    --                 border = "none"
+    --             },
+    --             backdrop = 100
+    --         },
+    --         -- Neovim keymaps / fzf binds
+    --         keymap = {},
+    --         -- Fzf "accept" binds
+    --         actions = {},
+    --         -- Fzf CLI flags
+    --         fzf_opts = {
+    --             ["--walker-skip=.git,build,zig-cache,zig-out"] = true,
+    --             ["--no-scrollbar"] = true,
+    --             ["--pointer=\"\" "] = true,
+    --             ["--no-separator"] = true,
+    --         },
+    --         -- Fzf `--color` specification
+    --         fzf_colors = {
+    --             ["bg+"] = "#313244",
+    --             -- ["bg"] = "#1e1e2e",
+    --             ["spinner"] = "#1e1e2e",
+    --             ["hl"] = "#f38ba8",
+    --             ["fg"] = "#cdd6f4",
+    --             ["header"] = "#f38ba8",
+    --             ["info"] = "#1e1e2e",
+    --             ["pointer"] = "#f5e0dc",
+    --             ["marker"] = "#b4befe",
+    --             ["fg+"] = "#cdd6f4",
+    --             ["prompt"] = "#cba6f7",
+    --             ["hl+"] = "#f38ba8",
+    --             ["selected-bg"] = "#45475a",
+    --             ["separator"] = "#6c7086",
+    --         },
+    --         -- Highlights
+    --         hls = {},
+    --         -- Previewers options
+    --         previewers = {},
+    --         files = {
+    --             find_opts = [[-type f -not -path '*/\.git/*' -printf '%P\n']],
+    --             rg_opts   =
+    --             "--color=never --files --follow -g \"!.git\" -g \"!*.pdf\" -g \"!*.odt\" -g \"!zig-cache\" -g \"!build\" -g \"!zig-out\"",
+    --             fd_opts   =
+    --             [[--color=never --type f --follow --exclude .git --exclude zig-cache --exclude build --exclude zig-out --exclude *.pdf --exclude *.odt]],
+    --             actions   = {
+    --                 ["ctrl-g"] = false,
+    --             },
+    --         },
+    --         defaults = {
+    --             file_icons = "mini",
+    --         },
+    --     },
+    -- },
 }

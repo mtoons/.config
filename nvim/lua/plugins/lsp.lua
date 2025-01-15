@@ -34,13 +34,13 @@ return {
                     end
 
                     -- Jump to the definition of the word under your cursor.
-                    map("gd", "<cmd>FzfLua lsp_definitions<cr>", "[G]oto [D]efinition")
+                    map("gd", function() Snacks.picker.lsp_definitions() end, "[G]oto [D]efinition")
                     -- Find references for the word under your cursor.
-                    map("gr", "<cmd>FzfLua lsp_references<cr>", "[G]oto [R]eferences")
+                    map("gr", function() Snacks.picker.lsp_references() end, "[G]oto [R]eferences")
                     -- Jump to the implementation of the word under your cursor.
-                    map("gI", "<cmd>FzfLua lsp_implementations<cr>", "[G]oto [I]mplementation")
+                    map("gI", function() Snacks.picker.lsp_implementations() end, "[G]oto [I]mplementation")
                     -- Jump to the type of the word under your cursor.
-                    map("gtd", "<cmd>FzfLua lsp_typedefs<cr>", "[G]oto [T]ype [D]efinition")
+                    map("gtd", function() Snacks.picker.lsp_type_definitions() end, "[G]oto [T]ype [D]efinition")
                     -- end
                     -- Rename the variable under your cursor.
                     map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")

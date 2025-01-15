@@ -57,11 +57,8 @@ return {
                         enabled = false,
                         indentscope_color = "",
                     },
-                    -- telescope = {
-                    --     enabled = true,
-                    --     style = "classic"
-                    -- },
-                    fzf = true,
+                    telescope = false,
+                    fzf = false,
                     snacks = true,
                     native_lsp = {
                         enabled = true,

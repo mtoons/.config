@@ -7,7 +7,27 @@ return {
         priority     = 1000,
         lazy         = false,
         keys         = {
-            { "<leader>z", function() Snacks.zen() end, desc = "Toggle Zen Mode" },
+            { '<leader>sb', function() Snacks.picker.buffers() end,      desc = "Search [B]uffers" },
+            { '<leader>ss', function() Snacks.picker.colorschemes() end, desc = "Search [S]chemes" },
+            { '<leader>s"', function() Snacks.picker.registers() end,    desc = "Search [R]egisters" },
+            { '<leader>sg', function() Snacks.picker.grep() end,         desc = "Search [G]rep" },
+            { '<leader>sf', function() Snacks.picker.files() end,        desc = "Search [F]iles" },
+            { '<leader>sr', function() Snacks.picker.recent() end,       desc = "Search [R]ecent" },
+            { '<leader>sd', function() Snacks.picker.diagnostics() end,  desc = "Search [D]iagnostics" },
+            { '<leader>sh', function() Snacks.picker.help() end,         desc = "Search [H]elp" },
+            { '<leader>sk', function() Snacks.picker.keymaps() end,      desc = "Search [K]eymaps" },
+            { '<leader>sq', function() Snacks.picker.qflist() end,       desc = "Search [Q]uickfix" },
+            { '<leader>sg', function() Snacks.picker.projects() end,     desc = "Search [G]it" },
+            {
+                '<leader>sc',
+                function()
+                    Snacks.picker.files({ cwd = vim.fn.stdpath("config") })
+                end,
+                desc = "Search [C]onfig"
+            },
+            { '<leader>sz', function() Snacks.picker.zoxide() end, desc = "Search [Z]oxide" },
+
+            { "<leader>z",  function() Snacks.zen() end,           desc = "Toggle Zen Mode" },
             {
                 "<leader>nc",
                 function() Snacks.notifier.hide() end,
@@ -20,6 +40,124 @@ return {
             },
         },
         opts         = {
+            picker = {
+                layouts = {
+                    default = {
+                        layout = {
+                            box = "horizontal",
+                            width = 0.8,
+                            min_width = 120,
+                            height = 0.8,
+                            {
+                                box = "vertical",
+                                border = "none",
+                                title = "{source} {live}",
+                                title_pos = "center",
+                                { win = "input", height = 1,     border = "none" },
+                                { win = "list",  border = "none" },
+                            },
+                            { win = "preview", border = "left", width = 0.5 },
+                        },
+                    },
+                    dropdown = {
+                        layout = {
+                            backdrop = false,
+                            row = 1,
+                            width = 0.4,
+                            min_width = 80,
+                            height = 0.8,
+                            border = "none",
+                            box = "vertical",
+                            { win = "preview", height = 0.4, border = "none" },
+                            {
+                                box = "vertical",
+                                border = "none",
+                                title = "{source} {live}",
+                                title_pos = "center",
+                                { win = "input", height = 1,     border = "none" },
+                                { win = "list",  border = "none" },
+                            },
+                        },
+                    },
+                    select = {
+                        preview = false,
+                        layout = {
+                            backdrop = false,
+                            width = 0.5,
+                            min_width = 80,
+                            height = 0.4,
+                            min_height = 10,
+                            box = "vertical",
+                            border = "none",
+                            title = " Select ",
+                            title_pos = "center",
+                            { win = "input",   height = 1,     border = "none" },
+                            { win = "list",    border = "none" },
+                            { win = "preview", height = 0.4,   border = "top" },
+                        },
+                    },
+                    telescope = {
+                        reverse = true,
+                        layout = {
+                            box = "horizontal",
+                            backdrop = false,
+                            width = 0.8,
+                            height = 0.9,
+                            border = "none",
+                            {
+                                box = "vertical",
+                                { win = "list",  title = " Results ", title_pos = "center", border = "none" },
+                                { win = "input", height = 1,          border = "rounded",   title = "{source} {live}", title_pos = "center" },
+                            },
+                            {
+                                win = "preview",
+                                width = 0.45,
+                                border = "left",
+                                title = " Preview ",
+                                title_pos = "center",
+                            },
+                        },
+                    },
+                    vertical = {
+                        layout = {
+                            backdrop = false,
+                            width = 0.5,
+                            min_width = 80,
+                            height = 0.8,
+                            min_height = 30,
+                            box = "vertical",
+                            border = "none",
+                            title = "{source} {live}",
+                            title_pos = "center",
+                            { win = "input",   height = 1,     border = "none" },
+                            { win = "list",    border = "none" },
+                            { win = "preview", height = 0.4,   border = "top" },
+                        },
+                    },
+                    vscode = {
+                        preview = false,
+                        layout = {
+                            backdrop = false,
+                            row = 1,
+                            width = 0.4,
+                            min_width = 80,
+                            height = 0.4,
+                            border = "none",
+                            box = "vertical",
+                            { win = "input",   height = 1,     border = "rounded", title = "{source} {live}", title_pos = "center" },
+                            { win = "list",    border = "hpad" },
+                            { win = "preview", border = "none" },
+                        },
+                    },
+                },
+                win = {
+                    input = {
+                        keys = {
+                            ["<Esc>"] = { "close", mode = { "n", "i" } },
+                        },
+                    },
+                },
+            },
             zen = {
 
             },
@@ -96,7 +234,7 @@ return {
                                     -- if Finder == "telescope" then
                                     --     require "persisted".select()
                                     -- elseif Finder == "fzf-lua" then
-                                    require "nvim-possession".list()
+                                    Snacks.picker.zoxide()
                                     -- end
                                 end,
                         },
@@ -137,7 +275,7 @@ return {
             bigfile = { enabled = true },
             quickfile = { enabled = true },
             terminal = {
-                enabled = true,
+                enabled = false,
                 win = { style = "float" },
             },
 
