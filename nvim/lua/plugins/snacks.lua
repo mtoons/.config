@@ -25,6 +25,13 @@ return {
                 end,
                 desc = "Search [C]onfig"
             },
+            {
+                '<leader>sp',
+                function()
+                    Snacks.picker.files({ cwd = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy") })
+                end,
+                desc = "Search [P]ackages"
+            },
             { '<leader>sz', function() Snacks.picker.zoxide() end, desc = "Search [Z]oxide" },
 
             { "<leader>z",  function() Snacks.zen() end,           desc = "Toggle Zen Mode" },
