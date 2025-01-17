@@ -54,7 +54,7 @@ return {
                     markdown = true,
                     render_markdown = false,
                     mini = {
-                        enabled = false,
+                        enabled = true,
                         indentscope_color = "",
                     },
                     telescope = false,

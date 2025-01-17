@@ -2,7 +2,7 @@ return {
     {
         "folke/snacks.nvim",
         dependencies = {
-            { "echasnovski/mini.icons", version = false, opts = {} },
+            { 'echasnovski/mini.nvim', version = false, opts = {} },
         },
         priority     = 1000,
         lazy         = false,
@@ -17,7 +17,7 @@ return {
             { '<leader>sh', function() Snacks.picker.help() end,         desc = "Search [H]elp" },
             { '<leader>sk', function() Snacks.picker.keymaps() end,      desc = "Search [K]eymaps" },
             { '<leader>sq', function() Snacks.picker.qflist() end,       desc = "Search [Q]uickfix" },
-            { '<leader>sg', function() Snacks.picker.projects() end,     desc = "Search [G]it" },
+            { '<leader>sp', function() Snacks.picker.projects() end,     desc = "Search [P]ojects" },
             {
                 '<leader>sc',
                 function()
@@ -26,11 +26,11 @@ return {
                 desc = "Search [C]onfig"
             },
             {
-                '<leader>sp',
+                '<leader>sl',
                 function()
                     Snacks.picker.files({ cwd = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy") })
                 end,
-                desc = "Search [P]ackages"
+                desc = "Search [L]azy"
             },
             { '<leader>sz', function() Snacks.picker.zoxide() end, desc = "Search [Z]oxide" },
 
