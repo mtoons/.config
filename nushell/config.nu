@@ -902,6 +902,9 @@ alias c = clear
 alias v = nvim
 alias l = ls
 alias w = wsl
+alias cc = zig cc -std=c2x -Wall -Werror
+alias clang = clang -std=c2x -Wall -Werror
+alias gcc = gcc -std=c2x -Wall -Werror
 def f [] {
     let os = sys host | get name;
     if $os == "Windows" {
