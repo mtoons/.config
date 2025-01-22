@@ -27,8 +27,8 @@ return {
                 preset = 'default',
                 ['<C-space>'] = { 'select_and_accept' },
                 ['<C-y>'] = { 'show', 'show_documentation', 'hide_documentation' },
-                ['<C-l>'] = { 'snippet_forward', 'fallback' },
-                ['<C-h>'] = { 'snippet_backward', 'fallback' },
+                -- ['<C-l>'] = { 'snippet_forward', 'fallback' },
+                -- ['<C-h>'] = { 'snippet_backward', 'fallback' },
             },
 
             appearance = {

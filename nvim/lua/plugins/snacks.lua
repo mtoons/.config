@@ -55,6 +55,7 @@ return {
                             width = 0.8,
                             min_width = 120,
                             height = 0.8,
+                            border = Border,
                             {
                                 box = "vertical",
                                 border = "none",
@@ -73,7 +74,7 @@ return {
                             width = 0.4,
                             min_width = 80,
                             height = 0.8,
-                            border = "none",
+                            border = Border,
                             box = "vertical",
                             { win = "preview", height = 0.4, border = "none" },
                             {
@@ -110,7 +111,7 @@ return {
                             backdrop = false,
                             width = 0.8,
                             height = 0.9,
-                            border = "none",
+                            border = Border,
                             {
                                 box = "vertical",
                                 { win = "list",  title = " Results ", title_pos = "center", border = "none" },
@@ -133,7 +134,7 @@ return {
                             height = 0.8,
                             min_height = 30,
                             box = "vertical",
-                            border = "none",
+                            border = Border,
                             title = "{source} {live}",
                             title_pos = "center",
                             { win = "input",   height = 1,     border = "none" },
