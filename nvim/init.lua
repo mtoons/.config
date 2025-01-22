@@ -61,16 +61,6 @@ vim.keymap.set("t", "<C-v>", function()
 end, { expr = true })
 vim.keymap.set("t", "<C-w>", "<C-\\><C-n><C-w>")
 
--- Windows
-vim.keymap.set("t", "<C-h>", "<C-\\><C-N><C-w>h")
-vim.keymap.set("t", "<C-j>", "<C-\\><C-N><C-w>j")
-vim.keymap.set("t", "<C-k>", "<C-\\><C-N><C-w>k")
-vim.keymap.set("t", "<C-l>", "<C-\\><C-N><C-w>l")
-vim.keymap.set("i", "<C-h>", "<C-\\><C-N><C-w>h")
-vim.keymap.set("i", "<C-j>", "<C-\\><C-N><C-w>j")
-vim.keymap.set("i", "<C-k>", "<C-\\><C-N><C-w>k")
-vim.keymap.set("i", "<C-l>", "<C-\\><C-N><C-w>l")
-
 -- Settings
 -- Highlight on search
 vim.o.hlsearch = true
