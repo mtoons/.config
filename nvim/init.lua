@@ -115,6 +115,12 @@ vim.o.breakindent = true
 -- Undo history
 vim.o.undofile = true
 
+-- Conceal
+vim.o.conceallevel = 2
+
+-- Inlay hints
+vim.lsp.inlay_hint.enable()
+
 -- Case-insensitive searching
 vim.o.ignorecase = true
 vim.o.smartcase = true

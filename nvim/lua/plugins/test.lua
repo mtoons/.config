@@ -10,20 +10,22 @@ return {
     --         "antoinemadec/FixCursorHold.nvim",
     --         "nvim-treesitter/nvim-treesitter"
     --     },
-    --     -- keys = {
-    --     --     { "<leader>er", require "neotest".run.run, desc = "Experience [R]un" },
-    --     -- },
-    --     opts = {
-    --         adapters = {
-    --             require("neotest-zig")({
-    --                 dap = {
-    --                     adapter = "lldb",
-    --                 },
-    --             }),
-    --             require("neotest-rust") {
-    --                 dap_adapter = "lldb",
-    --             },
-    --         },
+    --     keys = {
+    --         { "<leader>er", function() require "neotest".run.run() end, desc = "Experience [R]un" },
     --     },
+    --     config = function()
+    --         require "neotest".setup {
+    --             adapters = {
+    --                 require("neotest-zig") {
+    --                     dap = {
+    --                         adapter = "lldb",
+    --                     },
+    --                 },
+    --                 require("neotest-rust") {
+    --                     dap_adapter = "lldb",
+    --                 },
+    --             },
+    --         }
+    --     end
     -- },
 }
