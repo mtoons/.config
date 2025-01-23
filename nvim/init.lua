@@ -1,6 +1,10 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-Border = "single"
+if vim.g.neovide then
+    Border = "none"
+else
+    Border = "single"
+end
 
 -- Install `lazy.nvim` plugin manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
