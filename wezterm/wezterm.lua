@@ -19,7 +19,7 @@ wezterm.on('gui-startup', function(cmd)
 end)
 
 -- This is where you actually apply your config choices
-config.default_prog = { 'C:\\Users\\Angel\\.cargo\\bin\\nu.exe', '-l' } -- Crash for obscure reasons
+config.default_prog = { 'nu', '-l' } -- Crash for obscure reasons
 config.enable_tab_bar = false
 config.allow_win32_input_mode = false
 config.enable_kitty_keyboard = true

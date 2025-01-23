@@ -6,7 +6,7 @@ return {
 
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
-            "echasnovski/mini.icons"
+            "echasnovski/mini.nvim"
         },
         opts = {
             hybrid_modes = { "n", "no", "c", "i" },

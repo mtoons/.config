@@ -5,7 +5,7 @@ return {
         opts = {
             preset = "modern",
             win = {
-                border = "none",
+                border = Border,
             },
         },
         init = function()

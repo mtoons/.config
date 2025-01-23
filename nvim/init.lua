@@ -1,18 +1,23 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
--- Finder = "fzf-lua"
+Border = "single"
 
 -- Install `lazy.nvim` plugin manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then ---@diagnostic disable-line: undefined-field
+if not vim.loop.fs_stat(lazypath) then
     local lazyrepo = "https://github.com/folke/lazy.nvim.git"
     vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-end ---@diagnostic disable-next-line: undefined-field
+end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-    { import = "plugins" },
-}, {})
+    spec = {
+        { import = "plugins" },
+    },
+    ui = {
+        border = Border,
+    },
+})
 
 -- Keymaps
 -- Terminal
@@ -60,16 +65,6 @@ vim.keymap.set("t", "<C-v>", function()
     return '<C-\\><C-N>"+pi'
 end, { expr = true })
 vim.keymap.set("t", "<C-w>", "<C-\\><C-n><C-w>")
-
--- Windows
-vim.keymap.set("t", "<C-h>", "<C-\\><C-N><C-w>h")
-vim.keymap.set("t", "<C-j>", "<C-\\><C-N><C-w>j")
-vim.keymap.set("t", "<C-k>", "<C-\\><C-N><C-w>k")
-vim.keymap.set("t", "<C-l>", "<C-\\><C-N><C-w>l")
-vim.keymap.set("i", "<C-h>", "<C-\\><C-N><C-w>h")
-vim.keymap.set("i", "<C-j>", "<C-\\><C-N><C-w>j")
-vim.keymap.set("i", "<C-k>", "<C-\\><C-N><C-w>k")
-vim.keymap.set("i", "<C-l>", "<C-\\><C-N><C-w>l")
 
 -- Settings
 -- Highlight on search
@@ -119,6 +114,12 @@ vim.o.breakindent = true
 
 -- Undo history
 vim.o.undofile = true
+
+-- Conceal
+vim.o.conceallevel = 2
+
+-- Inlay hints
+vim.lsp.inlay_hint.enable()
 
 -- Case-insensitive searching
 vim.o.ignorecase = true
