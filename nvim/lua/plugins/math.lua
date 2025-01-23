@@ -11,7 +11,7 @@ return {
         opts = {
             hybrid_modes = { "n", "no", "c", "i" },
         },
-    }
+    },
     -- {
     --     'MeanderingProgrammer/render-markdown.nvim',
     --     dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins

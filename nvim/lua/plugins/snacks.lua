@@ -333,7 +333,7 @@ return {
                     snacks.toggle.diagnostics():map("<leader>td")
                     snacks.toggle.line_number():map("<leader>tl")
                     snacks.toggle.option("conceallevel",
-                        { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 3 })
+                        { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
                         :map("<leader>tc")
                     snacks.toggle.treesitter():map("<leader>tT")
                     snacks.toggle.inlay_hints():map("<leader>th")
