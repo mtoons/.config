@@ -2,7 +2,7 @@ return {
     {
         "folke/snacks.nvim",
         dependencies = {
-            { 'echasnovski/mini.nvim', version = false, opts = {} },
+            { 'echasnovski/mini.icons', version = false, opts = {} },
         },
         priority     = 1000,
         lazy         = false,
