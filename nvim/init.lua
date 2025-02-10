@@ -76,9 +76,8 @@ vim.o.hlsearch = true
 
 -- Diagnostics
 vim.diagnostic.config {
-    virtual_text = {
-        prefix = "",
-        spacing = 0,
+    virtual_lines = {
+        current_line = true,
     },
     signs = {
         text = {
