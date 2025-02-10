@@ -174,8 +174,17 @@ return {
                 nushell = {},
 
                 -- Python
-                pyright = {
+                basedpyright = {
                     single_file_support = true,
+                    -- settings = {
+                    --     basedpyright = {
+                    --         analysis = {
+                    --             autoSearchPaths = true,
+                    --             diagnosticMode = "openFilesOnly",
+                    --             useLibraryCodeForTypes = true,
+                    --         },
+                    --     },
+                    -- },
                 },
             }
             for server, config in pairs(servers) do

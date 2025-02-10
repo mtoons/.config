@@ -7,6 +7,8 @@ return {
         priority     = 1000,
         lazy         = false,
         keys         = {
+            { '<leader>e',  function() Snacks.explorer.open() end,       desc = "[E]xplorer" },
+            { '<leader>se', function() Snacks.picker.explorer() end,     desc = "Search [E]xplorer" },
             { '<leader>sb', function() Snacks.picker.buffers() end,      desc = "Search [B]uffers" },
             { '<leader>ss', function() Snacks.picker.colorschemes() end, desc = "Search [S]chemes" },
             { '<leader>s"', function() Snacks.picker.registers() end,    desc = "Search [R]egisters" },
@@ -47,9 +49,30 @@ return {
             },
         },
         opts         = {
+            explorer = {
+                replace_netrw = true,
+            },
             picker = {
                 layouts = {
                     default = {
+                        layout = {
+                            box = "horizontal",
+                            width = 0.8,
+                            min_width = 120,
+                            height = 0.8,
+                            border = Border,
+                            {
+                                box = "vertical",
+                                border = "none",
+                                title = "{source} {live}",
+                                title_pos = "center",
+                                { win = "input", height = 1,     border = "none" },
+                                { win = "list",  border = "none" },
+                            },
+                            { win = "preview", border = "left", width = 0.5 },
+                        },
+                    },
+                    sidebar = {
                         layout = {
                             box = "horizontal",
                             width = 0.8,
@@ -155,6 +178,46 @@ return {
                             { win = "input",   height = 1,     border = "rounded", title = "{source} {live}", title_pos = "center" },
                             { win = "list",    border = "hpad" },
                             { win = "preview", border = "none" },
+                        },
+                    },
+                },
+                sources = {
+                    explorer = {
+                        finder = "explorer",
+                        sort = { fields = { "sort" } },
+                        tree = true,
+                        supports_live = true,
+                        follow_file = true,
+                        focus = "input",
+                        auto_close = true,
+                        jump = { close = false },
+                        layout = { preset = "default", preview = false },
+                        formatters = { file = { filename_only = true } },
+                        matcher = { sort_empty = true },
+                        config = function(opts)
+                            return require("snacks.picker.source.explorer").setup(opts)
+                        end,
+                        win = {
+                            input = {
+                                keys = {
+                                    ["<C-a>"] = { "explorer_add", mode = { "n", "i" } },
+                                    ["<C-d>"] = { "explorer_del", mode = { "n", "i" } },
+                                    ["<C-m>"] = { "explorer_move", mode = { "n", "i" } },
+                                },
+                            },
+                            list = {
+                                keys = {
+                                    ["<BS>"] = "explorer_up",
+                                    ["a"] = "explorer_add",
+                                    ["d"] = "explorer_del",
+                                    ["r"] = "explorer_rename",
+                                    ["c"] = "explorer_copy",
+                                    ["m"] = "explorer_move",
+                                    ["y"] = "explorer_yank",
+                                    ["<c-c>"] = "explorer_cd",
+                                    ["."] = "explorer_focus",
+                                },
+                            },
                         },
                     },
                 },
@@ -279,13 +342,101 @@ return {
                     },
                 },
             },
-            notifier = { enabled = true },
+            notifier = {
+                style = "compact",
+            },
+            styles = {
+                notification = {
+                    border = Border,
+                    zindex = 100,
+                    ft = "markdown",
+                    wo = {
+                        winblend = 5,
+                        wrap = false,
+                        conceallevel = 2,
+                        colorcolumn = "",
+                    },
+                    bo = { filetype = "snacks_notif" },
+                },
+                notification_history = {
+                    border = Border,
+                    zindex = 100,
+                    width = 0.6,
+                    height = 0.6,
+                    minimal = false,
+                    title = " Notification History ",
+                    title_pos = "center",
+                    ft = "markdown",
+                    bo = { filetype = "snacks_notif_history", modifiable = false },
+                    wo = { winhighlight = "Normal:SnacksNotifierHistory" },
+                    keys = { q = "close" },
+                },
+                input = {
+                    backdrop = false,
+                    position = "float",
+                    border = Border,
+                    title_pos = "center",
+                    height = 1,
+                    width = 60,
+                    relative = "editor",
+                    noautocmd = true,
+                    row = 2,
+                    -- relative = "cursor",
+                    -- row = -3,
+                    -- col = 0,
+                    wo = {
+                        winhighlight =
+                        "NormalFloat:SnacksInputNormal,FloatBorder:SnacksInputBorder,FloatTitle:SnacksInputTitle",
+                        cursorline = false,
+                    },
+                    bo = {
+                        filetype = "snacks_input",
+                        buftype = "prompt",
+                    },
+                    --- buffer local variables
+                    b = {
+                        completion = false, -- disable blink completions in input
+                    },
+                    keys = {
+                        n_esc = { "<esc>", { "cmp_close", "cancel" }, mode = "n", expr = true },
+                        i_esc = { "<esc>", { "cmp_close", "stopinsert" }, mode = "i", expr = true },
+                        i_cr = { "<cr>", { "cmp_accept", "confirm" }, mode = "i", expr = true },
+                        i_tab = { "<tab>", { "cmp_select_next", "cmp" }, mode = "i", expr = true },
+                        i_ctrl_w = { "<c-w>", "<c-s-w>", mode = "i", expr = true },
+                        i_up = { "<up>", { "hist_up" }, mode = { "i", "n" } },
+                        i_down = { "<down>", { "hist_down" }, mode = { "i", "n" } },
+                        q = "cancel",
+                    },
+                },
+                scratch = {
+                    width = 100,
+                    height = 30,
+                    bo = { buftype = "", buflisted = false, bufhidden = "hide", swapfile = false },
+                    minimal = false,
+                    noautocmd = false,
+                    -- position = "right",
+                    zindex = 20,
+                    wo = { winhighlight = "NormalFloat:Normal" },
+                    border = Border,
+                    title_pos = "center",
+                    footer_pos = "center",
+                },
+                blame_line = {
+                    width = 0.6,
+                    height = 0.6,
+                    border = Border,
+                    title = " Git Blame ",
+                    title_pos = "center",
+                    ft = "git",
+                },
+            },
             bigfile = { enabled = true },
             quickfile = { enabled = true },
             terminal = {
                 enabled = false,
                 win = { style = "float" },
             },
+            input = { enabled = true },
 
             bufdelete = { enabled = false },
             git = { enabled = false },

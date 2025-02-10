@@ -2,14 +2,16 @@ return {
     {
         "OXY2DEV/markview.nvim",
         -- lazy = false, -- Recommended
-        ft = "markdown", -- If you decide to lazy-load anyway
+        ft = { "markdown" }, -- If you decide to lazy-load anyway
 
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
             "echasnovski/mini.nvim"
         },
         opts = {
-            hybrid_modes = { "n", "no", "c", "i" },
+            preview = {
+                -- hybrid_modes = { "n", "no", "c", "i" },
+            },
         },
     },
     -- {
