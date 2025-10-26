@@ -77,7 +77,7 @@ vim.o.hlsearch = true
 -- Diagnostics
 vim.diagnostic.config {
     virtual_lines = {
-        current_line = true,
+        current_line = false,
     },
     signs = {
         text = {
@@ -180,10 +180,10 @@ end, { noremap = true, silent = true })
 vim.g.neovide_floating_corner_radius = 0.3
 
 -- Autocmds
-vim.api.nvim_create_autocmd("TextYankPost", {
-    desc = "Highlight on yank",
-    group = vim.api.nvim_create_augroup("HighOnYan", { clear = true }),
-    callback = function()
-        vim.highlight.on_yank()
-    end,
-})
+-- vim.api.nvim_create_autocmd("TextYankPost", {
+--     desc = "Highlight on yank",
+--     group = vim.api.nvim_create_augroup("HighOnYan", { clear = true }),
+--     callback = function()
+--         vim.highlight.on_yank()
+--     end,
+-- })
