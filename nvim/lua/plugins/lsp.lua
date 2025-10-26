@@ -186,6 +186,13 @@ return {
                     --     },
                     -- },
                 },
+
+                -- Wgsl
+                wgsl_analyzer = {
+                    single_file_support = true,
+                    cmd = { "wgsl-analyzer" },
+                    filetypes = { "wgsl" },
+                },
             }
             for server, config in pairs(servers) do
                 config.capabilities = require 'blink.cmp'.get_lsp_capabilities(config.capabilities)
