@@ -1,3 +1,143 @@
+local servers = {
+    -- Haskell
+    hls = {
+        filetypes = { 'haskell', 'lhaskell', 'cabal' },
+        command = { "haskell-language-server-wrapper", "--lsp" },
+    },
+
+    -- C & C++
+    clangd = {
+        root_dir = function(fname)
+            return require("lspconfig.util").root_pattern(
+                "Makefile",
+                "configure.ac",
+                "configure.in",
+                "config.h.in",
+                "meson.build",
+                "meson_options.txt",
+                "build.ninja"
+            )(fname) or require("lspconfig.util").root_pattern("compile_commands.json", "compile_flags.txt")(
+                fname
+            ) or vim.fs.dirname(vim.fs.find('.git', { path = fname, upward = true })[1])
+        end,
+        cmd = {
+            "clangd",
+            "--background-index",
+            "--clang-tidy",
+            "--header-insertion=iwyu",
+            "--completion-style=detailed",
+            "--function-arg-placeholders",
+            "--fallback-style=llvm",
+            "--query-driver=**/zig-cc.cmd,**/zig-cc,**/zig-c++.cmd,**/zig-c++",
+        },
+        init_options = {
+            usePlaceholders = true,
+            completeUnimported = true,
+            clangdFileStatus = true,
+        },
+    },
+
+    -- Rust
+    rust_analyzer = {
+        settings = {
+            ["rust-analyzer"] = {
+                checkOnSave = { enable = true, },
+                diagnostics = { enable = true, },
+                check = {
+                    command = "clippy",
+                },
+            },
+        },
+    },
+    -- bacon_ls = {
+    --     enabled = true,
+    --     autostart = true,
+    --     settings = {
+    --         -- locationsFile = ".locations",
+    --         baconSettings = {
+    --             spawn = true,
+    --             command = "bacon clippy -- --all-features"
+    --         }
+    --     },
+    -- },
+
+    -- Zig
+    zls = {
+        filetypes = { "zig", "zir", "zon" },
+        settings = {
+            ["enable_build_on_save"] = true,
+        },
+    },
+
+    -- Markdown
+    marksman = {},
+
+    -- Asembly
+    asm_lsp = {},
+
+    -- Typst
+    tinymist = {
+        single_file_support = true,
+        root_dir = function()
+            return vim.fn.getcwd()
+        end,
+        filetypes = { "typst", "typ" },
+        settings = {
+            exportPdf = "onType",
+            outputPath = "$root/$dir/$name",
+            formatterMode = "typstyle",
+        },
+    },
+
+    -- LaTex
+    texlab = {
+        filetypes = { "latex", "markdown" },
+    },
+
+    -- Lua
+    lua_ls = {
+        -- cmd = {...},
+        -- filetypes = { ...},
+        -- capabilities = {},
+        settings = {
+            Lua = {
+                completion = {
+                    callSnippet = "Replace",
+                },
+                -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+                -- diagnostics = { disable = { 'missing-fields' } },
+            },
+        },
+    },
+
+    -- Nushell
+    nushell = {},
+
+    -- Python
+    basedpyright = {
+        single_file_support = true,
+        -- settings = {
+        --     basedpyright = {
+        --         analysis = {
+        --             autoSearchPaths = true,
+        --             diagnosticMode = "openFilesOnly",
+        --             useLibraryCodeForTypes = true,
+        --         },
+        --     },
+        -- },
+    },
+
+    -- Odin
+    ols = {
+        init_options = {
+            checker_args = "-strict-style",
+            collections = {
+                { name = "shared", path = vim.fn.expand('$HOME/odin-lib') }
+            },
+        },
+    },
+}
+
 return {
     -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
     -- used for completion, annotations and signatures of Neovim apis
@@ -59,145 +199,13 @@ return {
             -- local capabilities = vim.lsp.protocol.make_client_capabilities()
             -- capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
-            local servers = {
-                -- Haskell
-                hls = {
-                    filetypes = { 'haskell', 'lhaskell', 'cabal' },
-                    command = { "haskell-language-server-wrapper", "--lsp" },
-                },
-
-                -- C & C++
-                clangd = {
-                    root_dir = function(fname)
-                        return require("lspconfig.util").root_pattern(
-                            "Makefile",
-                            "configure.ac",
-                            "configure.in",
-                            "config.h.in",
-                            "meson.build",
-                            "meson_options.txt",
-                            "build.ninja"
-                        )(fname) or require("lspconfig.util").root_pattern("compile_commands.json", "compile_flags.txt")(
-                            fname
-                        ) or vim.fs.dirname(vim.fs.find('.git', { path = fname, upward = true })[1])
-                    end,
-                    cmd = {
-                        "clangd",
-                        "--background-index",
-                        "--clang-tidy",
-                        "--header-insertion=iwyu",
-                        "--completion-style=detailed",
-                        "--function-arg-placeholders",
-                        "--fallback-style=llvm",
-                    },
-                    init_options = {
-                        usePlaceholders = true,
-                        completeUnimported = true,
-                        clangdFileStatus = true,
-                    },
-                },
-
-                -- Rust
-                rust_analyzer = {
-                    settings = {
-                        ["rust-analyzer"] = {
-                            checkOnSave = { enable = true, },
-                            diagnostics = { enable = true, },
-                            check = {
-                                command = "clippy",
-                            },
-                        },
-                    },
-                },
-                -- bacon_ls = {
-                --     enabled = true,
-                --     autostart = true,
-                --     settings = {
-                --         -- locationsFile = ".locations",
-                --         baconSettings = {
-                --             spawn = true,
-                --             command = "bacon clippy -- --all-features"
-                --         }
-                --     },
-                -- },
-
-                -- Zig
-                zls = {
-                    filetypes = { "zig", "zir", "zon" },
-                    settings = {
-                        ["enable_build_on_save"] = true,
-                    },
-                },
-
-                -- Markdown
-                marksman = {},
-
-                -- Asembly
-                asm_lsp = {},
-
-                -- Typst
-                tinymist = {
-                    single_file_support = true,
-                    root_dir = function()
-                        return vim.fn.getcwd()
-                    end,
-                    filetypes = { "typst" },
-                    settings = {
-                        exportPdf = "onType",
-                        outputPath = "$root/$dir/$name",
-                        formatterMode = "typstyle",
-                    },
-                },
-
-                -- LaTex
-                texlab = {
-                    filetypes = { "latex", "markdown" },
-                },
-
-                -- Lua
-                lua_ls = {
-                    -- cmd = {...},
-                    -- filetypes = { ...},
-                    -- capabilities = {},
-                    settings = {
-                        Lua = {
-                            completion = {
-                                callSnippet = "Replace",
-                            },
-                            -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-                            -- diagnostics = { disable = { 'missing-fields' } },
-                        },
-                    },
-                },
-
-                -- Nushell
-                nushell = {},
-
-                -- Python
-                basedpyright = {
-                    single_file_support = true,
-                    -- settings = {
-                    --     basedpyright = {
-                    --         analysis = {
-                    --             autoSearchPaths = true,
-                    --             diagnosticMode = "openFilesOnly",
-                    --             useLibraryCodeForTypes = true,
-                    --         },
-                    --     },
-                    -- },
-                },
-
-                -- Wgsl
-                wgsl_analyzer = {
-                    single_file_support = true,
-                    cmd = { "wgsl-analyzer" },
-                    filetypes = { "wgsl" },
-                },
-            }
             for server, config in pairs(servers) do
                 config.capabilities = require 'blink.cmp'.get_lsp_capabilities(config.capabilities)
                 -- config.capabilities = vim.tbl_deep_extend("force", {}, capabilities, config.capabilities or {})
                 require 'lspconfig'[server].setup(config)
+                -- vim.lsp.config[server] = config
+                -- vim.lsp.config(server, config)
+                -- vim.lsp.enable(server, true)
             end
         end,
     },
@@ -228,11 +236,19 @@ return {
                     lsp_format = lsp_format_opt,
                 }
             end,
+            formatters = {
+                odinfmt = {
+                    -- Change where to find the command if it isn't in your path.
+                    command = "odinfmt",
+                    args = { "-stdin" },
+                    stdin = true,
+                },
+            },
             formatters_by_ft = {
                 -- Conform can also run multiple formatters sequentially
                 -- python = { "isort", "black" },
                 typst = { "typstyle", "typstfmt", stop_after_first = true },
-                -- lua = { "stylua" },
+                odin = { "odinfmt" }, -- lua = { "stylua" },
                 -- You can use 'stop_after_first' to run the first available formatter from the list
                 -- javascript = { "prettierd", "prettier", stop_after_first = true },
             },
