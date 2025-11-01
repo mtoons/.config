@@ -37,30 +37,6 @@ local servers = {
         },
     },
 
-    -- Rust
-    rust_analyzer = {
-        settings = {
-            ["rust-analyzer"] = {
-                checkOnSave = { enable = true, },
-                diagnostics = { enable = true, },
-                check = {
-                    command = "clippy",
-                },
-            },
-        },
-    },
-    -- bacon_ls = {
-    --     enabled = true,
-    --     autostart = true,
-    --     settings = {
-    --         -- locationsFile = ".locations",
-    --         baconSettings = {
-    --             spawn = true,
-    --             command = "bacon clippy -- --all-features"
-    --         }
-    --     },
-    -- },
-
     -- Zig
     zls = {
         filetypes = { "zig", "zir", "zon" },
@@ -96,8 +72,8 @@ local servers = {
 
     -- Lua
     lua_ls = {
-        -- cmd = {...},
-        -- filetypes = { ...},
+        cmd = { "lua-language-server" },
+        filetypes = { "lua" },
         -- capabilities = {},
         settings = {
             Lua = {
@@ -202,10 +178,10 @@ return {
             for server, config in pairs(servers) do
                 config.capabilities = require 'blink.cmp'.get_lsp_capabilities(config.capabilities)
                 -- config.capabilities = vim.tbl_deep_extend("force", {}, capabilities, config.capabilities or {})
-                require 'lspconfig'[server].setup(config)
-                -- vim.lsp.config[server] = config
+                -- require 'lspconfig'[server].setup(config)
+                vim.lsp.config[server] = config
                 -- vim.lsp.config(server, config)
-                -- vim.lsp.enable(server, true)
+                vim.lsp.enable(server)
             end
         end,
     },
@@ -253,5 +229,61 @@ return {
                 -- javascript = { "prettierd", "prettier", stop_after_first = true },
             },
         },
+    },
+    {
+        "mrcjkb/rustaceanvim",
+        ft = { "rust" },
+        opts = {
+            server = {
+                -- on_attach = function(_, bufnr)
+                --     vim.keymap.set("n", "<leader>cR", function()
+                --         vim.cmd.RustLsp("codeAction")
+                --     end, { desc = "Code Action", buffer = bufnr })
+                --     vim.keymap.set("n", "<leader>dr", function()
+                --         vim.cmd.RustLsp("debuggables")
+                --     end, { desc = "Rust Debuggables", buffer = bufnr })
+                -- end,
+                default_settings = {
+                    -- rust-analyzer language server configuration
+                    ["rust-analyzer"] = {
+                        cargo = {
+                            allFeatures = true,
+                            loadOutDirsFromCheck = true,
+                            buildScripts = {
+                                enable = true,
+                            },
+                        },
+                        -- Add clippy lints for Rust if using rust-analyzer
+                        checkOnSave = true,
+                        -- Enable diagnostics if using rust-analyzer
+                        diagnostics = {
+                            enable = true,
+                        },
+                        procMacro = {
+                            enable = true,
+                        },
+                        files = {
+                            exclude = {
+                                ".direnv",
+                                ".git",
+                                ".jj",
+                                ".github",
+                                ".gitlab",
+                                "bin",
+                                "node_modules",
+                                "target",
+                                "venv",
+                                ".venv",
+                            },
+                            -- Avoid Roots Scanned hanging, see https://github.com/rust-lang/rust-analyzer/issues/12613#issuecomment-2096386344
+                            watcher = "client",
+                        },
+                    },
+                },
+            },
+        },
+        config = function(_, opts)
+            vim.g.rustaceanvim = vim.tbl_deep_extend("keep", vim.g.rustaceanvim or {}, opts or {})
+        end,
     },
 }
