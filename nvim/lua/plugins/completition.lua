@@ -1,9 +1,74 @@
 return {
     {
+        'L3MON4D3/LuaSnip',
+        version = 'v2.*',
+        dependencies = { "rafamadriz/friendly-snippets" },
+        config = function()
+            ---@diagnostic disable: unused-local
+            local ls = require "luasnip"
+            local s = ls.snippet
+            local sn = ls.snippet_node
+            local t = ls.text_node
+            local i = ls.insert_node
+            local f = ls.function_node
+            local c = ls.choice_node
+            local d = ls.dynamic_node
+            local r = ls.restore_node
+            local l = require("luasnip.extras").lambda
+            local rep = require("luasnip.extras").rep
+            local p = require("luasnip.extras").partial
+            local m = require("luasnip.extras").match
+            local n = require("luasnip.extras").nonempty
+            local dl = require("luasnip.extras").dynamic_lambda
+            local fmt = require("luasnip.extras.fmt").fmt
+            local types = require("luasnip.util.types")
+            local conds = require("luasnip.extras.conditions")
+            local conds_expand = require("luasnip.extras.conditions.expand").snippet
+
+            ls.add_snippets("typst", {
+                s("récurrence", fmt([[
+                    Je raisonne par récurrence.
+
+                    Pour tout $n in {}$, j'examine la proposition :
+                    $ P(n) : {} $
+
+                    // Initialisation :
+                    $ {} $
+                    La proposition $P(0)$ est vraie.
+
+                    // Hérédité :
+                    J'émets l'hypothèse de récurrence :
+                    $ {} $
+
+                    $
+                      {}
+                    $
+
+                    Si $P(n)$ est vraie alors $P(n+1)$ l'est aussi.
+
+                    // Conclusion :
+                    L'hérédité et l'initialisation sont vérifiées
+                    donc d'après le principe de récurrence la proposition
+                    $P(n) : {}$
+                    est vraie pour tout $n in {}$.
+                ]],
+                    {
+                        i(1, "ensemble"),
+                        i(2, "proposition"),
+                        i(3, "initialisation"),
+                        rep(2),
+                        i(0, "récurrence"),
+                        rep(2),
+                        rep(1),
+                    })) }, {}
+            )
+            require "luasnip.loaders.from_vscode".lazy_load()
+        end
+    },
+    {
         'saghen/blink.cmp',
         -- optional: provides snippets for the snippet source
         dependencies = {
-            { 'L3MON4D3/LuaSnip', version = 'v2.*' },
             'hrsh7th/cmp-calc',
             'folke/lazydev.nvim',
             'rafamadriz/friendly-snippets',
@@ -43,8 +108,9 @@ return {
 
             -- Default list of enabled providers defined so that you can extend it
             -- elsewhere in your config, without redefining it, due to `opts_extend`
+            snippets = { preset = 'luasnip' },
             sources = {
-                default = { 'lazydev', 'lsp', 'calc' },
+                default = { 'lazydev', 'lsp', 'path', 'snippets', 'calc' },
                 -- default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer', 'calc' },
 
                 providers = {
