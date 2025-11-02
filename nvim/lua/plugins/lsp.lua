@@ -53,11 +53,11 @@ local servers = {
 
     -- Typst
     tinymist = {
-        single_file_support = true,
-        root_dir = function()
-            return vim.fn.getcwd()
-        end,
-        filetypes = { "typst", "typ" },
+        -- single_file_support = true,
+        -- root_dir = function()
+        --     return vim.fn.getcwd()
+        -- end,
+        -- filetypes = { "typst", "typ" },
         settings = {
             exportPdf = "onType",
             outputPath = "$root/$dir/$name",
