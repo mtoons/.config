@@ -1,5 +1,6 @@
 nushell/.zoxide.nu
 nushell/history.txt
+nushell/templates/template.pdf
 nvim/lazy-lock.json
 nvim/.luarc.json
 nvim/spell/

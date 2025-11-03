@@ -31,6 +31,7 @@
   it
 }
 #show math.equation: set text(font: "Noto Sans Math")
+#show math.equation.where(block: false): it => math.display(it)
 #let high(string) = text(string, fill: colors.rosewater.rgb)
 #let und(string) = underline(
   string,
