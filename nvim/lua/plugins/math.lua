@@ -9,6 +9,9 @@ return {
             "echasnovski/mini.nvim"
         },
         opts = {
+            typst = {
+                enable = false,
+            },
             preview = {
                 -- hybrid_modes = { "n", "no", "c", "i" },
             },
