@@ -63,7 +63,8 @@ return {
                     }
                 )),
                 s("highlight", fmt("#high[{}]{}", { i(1), i(0) })),
-                s("underline", fmt("und[{}]{}", { i(1), i(0) }))
+                s("underline", fmt("#und[{}]{}", { i(1), i(0) })),
+                s("lim", fmt("lim_(n->+oo) {}", { i(0) })),
             }, {}
             )
             require "luasnip.loaders.from_vscode".lazy_load()

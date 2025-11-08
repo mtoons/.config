@@ -1,4 +1,9 @@
+---@diagnostic disable: undefined-global
 local servers = {
+    ocamllsp = {
+        cmd = { "opam", "exec", "--", "ocamllsp" },
+        settings = {},
+    },
     -- Haskell
     hls = {
         filetypes = { 'haskell', 'lhaskell', 'cabal' },
@@ -202,6 +207,7 @@ return {
         },
         opts = {
             notify_on_error = false,
+            ---@diagnostic disable-next-line: unused-local
             format_on_save = function(bufnr)
                 -- Disable "format_on_save lsp_fallback" for languages that don't
                 -- have a well standardized coding style. You can add additional
