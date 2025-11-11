@@ -53,11 +53,11 @@ return {
                     est vraie pour tout $n in {}$.
                 ]],
                     {
-                        i(1, "ensemble"),
-                        i(2, "proposition"),
-                        i(3, "initialisation"),
+                        i(1, "\"ensemble\""),
+                        i(2, "\"proposition\""),
+                        i(3, "\"initialisation\""),
                         rep(2),
-                        i(0, "récurrence"),
+                        i(0, "\"récurrence\""),
                         rep(2),
                         rep(1),
                     }
