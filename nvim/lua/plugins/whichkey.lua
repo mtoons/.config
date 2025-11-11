@@ -4,6 +4,12 @@ return {
         event = "VeryLazy",
         opts = {
             preset = "modern",
+            triggers = {
+                { "<auto>", mode = "nixsotc" },
+                { "s",      mode = { "n", "v" } },
+                { "a",      mode = { "n", "v" } },
+                { "i",      mode = { "n", "v" } },
+            },
             win = {
                 border = Border,
             },
