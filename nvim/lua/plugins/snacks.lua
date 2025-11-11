@@ -343,8 +343,15 @@ return {
                     },
                 },
             },
+            ---@class snacks.notifier.Config
+            ---@field filter? fun(notif: snacks.notifier.Notif): boolean # filter our unwanted notifications (return false to hide)
             notifier = {
+                timeout = 1000,
                 style = "compact",
+                ---
+                filter = function(notif)
+                    return notif.msg ~= "tabout.nvim: No parser found for filetype "
+                end
             },
             styles = {
                 notification = {

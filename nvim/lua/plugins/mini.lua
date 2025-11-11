@@ -33,11 +33,4 @@ return {
             silent = true,
         },
     },
-    {
-        'echasnovski/mini.surround',
-        version = false,
-        opts = {
-            silent = true,
-        },
-    },
 }
