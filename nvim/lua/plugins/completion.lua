@@ -114,7 +114,7 @@ return {
             -- elsewhere in your config, without redefining it, due to `opts_extend`
             snippets = { preset = 'luasnip' },
             sources = {
-                default = { 'lazydev', 'lsp', 'path', 'snippets', 'calc' },
+                default = { 'snippets', 'lazydev', 'lsp', 'path', 'calc' },
                 -- default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer', 'calc' },
 
                 providers = {
