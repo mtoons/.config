@@ -3,9 +3,13 @@ return {
         'L3MON4D3/LuaSnip',
         version = 'v2.*',
         dependencies = { "rafamadriz/friendly-snippets" },
-        config = function()
+        opts = {
+            enable_autosnippets = true,
+        },
+        config = function(_, opts)
             ---@diagnostic disable: unused-local
             local ls = require "luasnip"
+            ls.config.setup(opts)
             local s = ls.snippet
             local sn = ls.snippet_node
             local t = ls.text_node
@@ -24,6 +28,11 @@ return {
             local types = require("luasnip.util.types")
             local conds = require("luasnip.extras.conditions")
             local conds_expand = require("luasnip.extras.conditions.expand").snippet
+
+            -- No easy way look into treesitter
+            local function in_math()
+                return true
+            end
 
             ls.add_snippets("typst", {
                 s("récurrence", fmt([[
@@ -62,9 +71,18 @@ return {
                         rep(1),
                     }
                 )),
-                s("highlight", fmt("#high[{}]{}", { i(1), i(0) })),
-                s("underline", fmt("#und[{}]{}", { i(1), i(0) })),
-                s("lim", fmt("lim_(n->+oo) {}", { i(0) })),
+                s({ trig = "ùhl", snippetType = "autosnippet" }, fmt("#high[{}]", { i(0) })),
+                s({ trig = "ùul", snippetType = "autosnippet" }, fmt("#und[{}]", { i(0) })),
+                s({ trig = "ùt", snippetType = "autosnippet" }, fmt('#tab[{}]', { i(0) })),
+                s(
+                    { trig = "ùdi", snippetType = "autosnippet" },
+                    fmt("({})/({})", { i(1), i(0) }),
+                    { condition = in_math }
+                ),
+                s({ trig = "limn", snippetType = "autosnippet" }, fmt("lim_(n->+oo) {}", { i(0) })),
+                s({ trig = "limx", snippetType = "autosnippet" }, fmt("lim_(x->{}) {}", { i(1, "+oo"), i(0) })),
+                s({ trig = "mt", snippetType = "autosnippet" }, fmt("${}$", { i(0) })),
+                s({ trig = "mmt", snippetType = "autosnippet" }, fmt("$ {} $", { i(0) })),
             }, {}
             )
             require "luasnip.loaders.from_vscode".lazy_load()

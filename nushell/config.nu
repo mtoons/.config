@@ -158,7 +158,7 @@ $env.config = {
 
     table: {
         mode: light # basic, compact, compact_double, light, thin, with_love, rounded, reinforced, heavy, none, other
-        index_mode: always # "always" show indexes, "never" show indexes, "auto" = show indexes when a table has "index" column
+        index_mode: auto # "always" show indexes, "never" show indexes, "auto" = show indexes when a table has "index" column
         show_empty: true # show 'empty list' and 'empty record' placeholders for command output
         padding: { left: 1, right: 1 } # a left right padding of each column in a table
         trim: {
@@ -186,8 +186,8 @@ $env.config = {
         highlight: { fg: "black", bg: "yellow" },
         status: {
             error: { fg: "white", bg: "red" },
-            warn: {}
-            info: {}
+            warn: { "yellow"}
+            info: { "blue" }
         },
         table: {
             split_line: { fg: "#404040" },
@@ -215,11 +215,6 @@ $env.config = {
             completer: null # check 'carapace_completer' above as an example
         }
         use_ls_colors: true # set this to true to enable file/path/directory completions using LS_COLORS
-    }
-
-    filesize: {
-        metric: false # true => KB, MB, GB (ISO standard), false => KiB, MiB, GiB (Windows standard)
-        format: "auto" # b, kb, kib, mb, mib, gb, gib, tb, tib, pb, pib, eb, eib, auto
     }
 
     cursor_shape: {
@@ -921,6 +916,22 @@ def f [] {
 
 source ~/.config/nushell/.zoxide.nu
 source ./templates/script.nu
+def zoxide_completer [context: string] {
+    let parts = $context | split row " " | skip 1
+    let files = ls | where type == dir | get name
+    {
+      options: {
+        sort: false,
+        completion_algorithm: substring,
+        case_sensitive: false,
+      },
+      completions: ($files ++ (^zoxide query --list --exclude $env.PWD -- ...$parts | lines)),
+    }
+  }
+
+def --env --wrapped z [...rest: string@zoxide_completer] {
+  __zoxide_z ...$rest
+}
 
 use ~/.cache/starship/init.nu
 use ./themes/catppuccin-mocha.nu
