@@ -33,7 +33,7 @@ local function statusline()
         ["!"] = "%#StatuslineOtherBg# hell %#StatuslineOtherFg#",
         ["t"] = "%#StatuslineOtherBg# Terminal %#StatuslineOtherFg#",
     }
-    local mode = "%#StatuslineOtherBg# Terminal %#StatuslineOtherFg#"
+    local mode = "%#StatuslineOtherBg# Unknown %#StatuslineOtherFg#"
     if modes[vim.api.nvim_get_mode().mode] then mode = modes[vim.api.nvim_get_mode().mode] end
 
     local icon, hl, _ = require "mini.icons".get("filetype", vim.bo.ft)
@@ -45,24 +45,23 @@ local function statusline()
     local info_count = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
     local hint_count = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
     if err_count > 0 then
-        diagnostics = "%#DiagnosticSignError#" .. diagnostics ..
+        diagnostics = diagnostics .. "%#DiagnosticSignError#" ..
             vim.diagnostic.config().signs.text[vim.diagnostic.severity.ERROR] .. tostring(err_count)
     end
     if warn_count > 0 then
-        diagnostics = "%#DiagnosticSignWarn#" .. diagnostics ..
+        diagnostics = diagnostics .. "%#DiagnosticSignWarn#" ..
             vim.diagnostic.config().signs.text[vim.diagnostic.severity.WARN] .. tostring(warn_count)
     end
     if info_count > 0 then
-        diagnostics = "%#DiagnosticSignInfo#" .. diagnostics ..
+        diagnostics = diagnostics .. "%#DiagnosticSignInfo#" ..
             vim.diagnostic.config().signs.text[vim.diagnostic.severity.INFO] .. tostring(info_count)
     end
     if hint_count > 0 then
-        diagnostics = "%#DiagnosticSignHint#" .. diagnostics ..
+        diagnostics = diagnostics .. "%#DiagnosticSignHint#" ..
             vim.diagnostic.config().signs.text[vim.diagnostic.severity.HINT] .. tostring(hint_count)
     end
-    diagnostics = diagnostics .. "%## "
 
-    vim.o.stl = mode .. "%## %t " .. diagnostics .. "%m%=" .. ft
+    vim.o.stl = mode .. "%## %t " .. diagnostics .. "%##%m%=" .. ft
 end
 
 statusline()
