@@ -1,8 +1,9 @@
 return {
     {
         "nvim-treesitter/nvim-treesitter",
-        build = ":TSUpdate",
-        main = "nvim-treesitter.configs",
+        lazy = false,
+        branch = 'main',
+        build = ':TSUpdate',
         opts = {
             textobjects = {
                 select = {
@@ -18,8 +19,7 @@ return {
                 },
             },
             ensure_installed = {
-                "markdown",
-                "markdown_inline",
+                "typst",
             },
             -- Autoinstall languages that are not installed
             auto_install = false,
@@ -30,7 +30,10 @@ return {
             indent = { enable = true },
         },
         dependencies = {
-            { "nvim-treesitter/nvim-treesitter-textobjects" },
+            {
+                "nvim-treesitter/nvim-treesitter-textobjects",
+                branch = 'main',
+            },
 
             -- NOTE: additional parsers
             { "nushell/tree-sitter-nu" },

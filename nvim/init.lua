@@ -59,10 +59,6 @@ vim.keymap.set(
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
--- Move lines
-vim.keymap.set("v", "J", "<cmd>m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", "<cmd>m '<-2<CR>gv=gv")
-
 -- Terminal
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>") -- Escape
 vim.keymap.set("t", "<C-v>", function()
@@ -71,6 +67,9 @@ end, { expr = true })
 vim.keymap.set("t", "<C-w>", "<C-\\><C-n><C-w>")
 
 -- Settings
+-- Statusline
+require "opts.statusline"
+
 -- Highlight on search
 vim.o.hlsearch = true
 
@@ -105,7 +104,7 @@ vim.o.number = true
 vim.o.relativenumber = true
 
 -- Mouse
-vim.o.mouse = "a"
+vim.o.mouse = "nv"
 
 -- Sync clipboard between OS and Neovim.
 vim.o.clipboard = "unnamedplus"
@@ -180,10 +179,10 @@ end, { noremap = true, silent = true })
 vim.g.neovide_floating_corner_radius = 0.3
 
 -- Autocmds
--- vim.api.nvim_create_autocmd("TextYankPost", {
---     desc = "Highlight on yank",
---     group = vim.api.nvim_create_augroup("HighOnYan", { clear = true }),
---     callback = function()
---         vim.highlight.on_yank()
---     end,
--- })
+---@diagnostic disable-next-line
+vim.api.nvim_create_autocmd("TextYankPost", {
+    desc = "Highlight on yank",
+    callback = function()
+        vim.hl.on_yank { higroup = "Visual", timeout = 200 }
+    end,
+})

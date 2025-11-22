@@ -2,12 +2,13 @@ return {
     {
         'L3MON4D3/LuaSnip',
         version = 'v2.*',
-        dependencies = { "rafamadriz/friendly-snippets" },
+        dependencies = { "rafamadriz/friendly-snippets", "nvim-treesitter/nvim-treesitter" },
         opts = {
             enable_autosnippets = true,
         },
         config = function(_, opts)
             ---@diagnostic disable: unused-local
+            ---@type LuaSnip
             local ls = require "luasnip"
             ls.config.setup(opts)
             local s = ls.snippet
@@ -24,65 +25,100 @@ return {
             local m = require("luasnip.extras").match
             local n = require("luasnip.extras").nonempty
             local dl = require("luasnip.extras").dynamic_lambda
-            local fmt = require("luasnip.extras.fmt").fmt
+            local fmt = require("luasnip.extras.fmt").fmta
             local types = require("luasnip.util.types")
             local conds = require("luasnip.extras.conditions")
             local conds_expand = require("luasnip.extras.conditions.expand").snippet
 
-            -- No easy way look into treesitter
+            -- Maybe ask on neovim subreddit which really is the fastest
+            ---@return boolean # Is the cursor in a math block.
             local function in_math()
-                return true
+                -- local ts = vim.treesitter
+                -- local cur_node = ts.get_node()
+                -- if not cur_node then return false end
+                --
+                -- ---@type TSNode|nil
+                -- local node = cur_node:tree():root()
+                -- while node do
+                --     if node:type() == "math" then return true end
+                --     node = node:child_with_descendant(cur_node)
+                -- end
+                -- return false
+                -- is_ancestor()
+
+                local ts = vim.treesitter
+
+                local cur_node = ts.get_node()
+                if not cur_node then return false end
+                if cur_node:type() == "math" then return true end
+                local root = cur_node:tree():root()
+
+                local query = ts.query.parse("typst", "(math) @math")
+                for _, node in query:iter_captures(root, 0) do
+                    if ts.is_ancestor(node, cur_node) then return true end
+                end
+
+                return false
             end
 
             ls.add_snippets("typst", {
                 s("récurrence", fmt([[
-                    Je raisonne par récurrence.
-
-                    Pour tout $n in {}$, j'examine la proposition :
-                    $ P(n) : {} $
-
-                    // Initialisation :
-                    $ {} $
-                    La proposition $P(0)$ est vraie.
-
-                    // Hérédité :
-                    J'émets l'hypothèse de récurrence :
-                    $ {} $
-
-                    $
-                      {}
-                    $
-
-                    Si $P(n)$ est vraie alors $P(n+1)$ l'est aussi.
-
-                    // Conclusion :
-                    L'hérédité et l'initialisation sont vérifiées
-                    donc d'après le principe de récurrence la proposition
-                    $P(n) : {}$
-                    est vraie pour tout $n in {}$.
+                #recurrence(
+                  $ <> $,
+                  $ <> $,
+                  $ <> $,
+                  $
+                    <>
+                  $,
+                )
                 ]],
                     {
-                        i(1, "\"ensemble\""),
+                        i(1, "NN"),
                         i(2, "\"proposition\""),
                         i(3, "\"initialisation\""),
-                        rep(2),
                         i(0, "\"récurrence\""),
-                        rep(2),
-                        rep(1),
                     }
                 )),
-                s({ trig = "ùhl", snippetType = "autosnippet" }, fmt("#high[{}]", { i(0) })),
-                s({ trig = "ùul", snippetType = "autosnippet" }, fmt("#und[{}]", { i(0) })),
-                s({ trig = "ùt", snippetType = "autosnippet" }, fmt('#tab[{}]', { i(0) })),
+                s({ trig = "hhl", snippetType = "autosnippet", hidden = true }, fmt("#high[<>]", { i(0) })),
+                s({ trig = "uul", snippetType = "autosnippet", hidden = true }, fmt("#und[<>]", { i(0) })),
+                s({ trig = "tta", snippetType = "autosnippet", hidden = true }, fmt('#tab[<>]', { i(0) })),
                 s(
-                    { trig = "ùdi", snippetType = "autosnippet" },
-                    fmt("({})/({})", { i(1), i(0) }),
+                    { trig = "ff", snippetType = "autosnippet", hidden = true },
+                    fmt("(<>)/(<>)", { i(1), i(0) }),
                     { condition = in_math }
                 ),
-                s({ trig = "limn", snippetType = "autosnippet" }, fmt("lim_(n->+oo) {}", { i(0) })),
-                s({ trig = "limx", snippetType = "autosnippet" }, fmt("lim_(x->{}) {}", { i(1, "+oo"), i(0) })),
-                s({ trig = "mt", snippetType = "autosnippet" }, fmt("${}$", { i(0) })),
-                s({ trig = "mmt", snippetType = "autosnippet" }, fmt("$ {} $", { i(0) })),
+                s(
+                    { trig = "lin", snippetType = "autosnippet", hidden = true },
+                    fmt("lim_(n->>+oo) ", {}),
+                    { condition = in_math }
+                ),
+                s(
+                    { trig = "lix", snippetType = "autosnippet", hidden = true },
+                    fmt("lim_(x->><>) <>", { i(1, "+oo"), i(0) }),
+                    { condition = in_math }
+                ),
+                s(
+                    { trig = " (%u)(%u)v", regTrig = true, wordTrig = false, snippetType = "autosnippet", hidden = true },
+                    {
+                        t(" va("),
+                        l(l.CAPTURE1),
+                        t(" "),
+                        l(l.CAPTURE2),
+                        t(")"),
+                    },
+                    { condition = in_math }
+                ),
+                s(
+                    { trig = " ([%a0])v", regTrig = true, wordTrig = false, snippetType = "autosnippet", hidden = true },
+                    {
+                        t(" va("),
+                        l(l.CAPTURE1),
+                        t(")")
+                    },
+                    { condition = in_math }
+                ),
+                s({ trig = "mt", snippetType = "autosnippet", hidden = true }, fmt("$<>$", { i(0) })),
+                s({ trig = "mmt", snippetType = "autosnippet", hidden = true }, fmt("$ <> $", { i(0) })),
             }, {}
             )
             require "luasnip.loaders.from_vscode".lazy_load()
@@ -90,50 +126,33 @@ return {
     },
     {
         'saghen/blink.cmp',
-        -- optional: provides snippets for the snippet source
         dependencies = {
             'hrsh7th/cmp-calc',
             'folke/lazydev.nvim',
             'rafamadriz/friendly-snippets',
         },
-
-        -- use a release tag to download pre-built binaries
         version = '*',
-        -- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
-        -- build = 'cargo build --release',
-        -- If you use nix, you can build from source using latest nightly rust with:
-        -- build = 'nix run .#build-plugin',
 
         ---@module 'blink.cmp'
         ---@type blink.cmp.Config
         opts = {
             cmdline = {
+                keymap = { preset = 'inherit' },
                 completion = { menu = { auto_show = true, }, },
             },
-            -- 'default' for mappings similar to built-in completion
-            -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
-            -- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
-            -- See the full "keymap" documentation for information on defining your own keymap.
             keymap = {
                 preset = 'default',
-                ['<C-space>'] = { 'select_and_accept' },
+                ['<C-space>'] = { 'select_and_accept', 'fallback' },
                 ['<C-y>'] = { 'show', 'show_documentation', 'hide_documentation' },
-                -- ['<C-l>'] = { 'snippet_forward', 'fallback' },
-                -- ['<C-h>'] = { 'snippet_backward', 'fallback' },
             },
 
             appearance = {
-                -- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
-                -- Adjusts spacing to ensure icons are aligned
                 nerd_font_variant = 'normal'
             },
 
-            -- Default list of enabled providers defined so that you can extend it
-            -- elsewhere in your config, without redefining it, due to `opts_extend`
             snippets = { preset = 'luasnip' },
             sources = {
                 default = { 'snippets', 'lazydev', 'lsp', 'path', 'calc' },
-                -- default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer', 'calc' },
 
                 providers = {
                     calc = {
@@ -143,7 +162,6 @@ return {
                     lazydev = {
                         name = "LazyDev",
                         module = "lazydev.integrations.blink",
-                        -- make lazydev completions top priority (see `:h blink.cmp`)
                         score_offset = 100,
                     },
                 },
@@ -163,11 +181,8 @@ return {
     },
     {
         'saghen/blink.compat',
-        -- use the latest release, via version = '*', if you also use the latest release for blink.cmp
         version = '*',
-        -- lazy.nvim will automatically load the plugin when it's required by blink.cmp
         lazy = true,
-        -- make sure to set opts so that lazy.nvim calls blink.compat's setup
         opts = {},
     },
 }

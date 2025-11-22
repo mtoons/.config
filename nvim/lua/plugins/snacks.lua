@@ -7,12 +7,11 @@ return {
         priority     = 1000,
         lazy         = false,
         keys         = {
-            { '<leader>e',   function() Snacks.explorer.open() end,       desc = "[E]xplorer" },
             { '<leader>se',  function() Snacks.picker.explorer() end,     desc = "Search [E]xplorer" },
             { '<leader>sb',  function() Snacks.picker.buffers() end,      desc = "Search [B]uffers" },
             { '<leader>ss',  function() Snacks.picker.colorschemes() end, desc = "Search [S]chemes" },
             { '<leader>s"',  function() Snacks.picker.registers() end,    desc = "Search [\"]Registers" },
-            { '<leader>s\'', function() Snacks.picker.marks() end,        desc = "Search M']arks" },
+            { '<leader>s\'', function() Snacks.picker.marks() end,        desc = "Search [']Marks" },
             { '<leader>sg',  function() Snacks.picker.grep() end,         desc = "Search [G]rep" },
             { '<leader>sf',  function() Snacks.picker.files() end,        desc = "Search [F]iles" },
             { '<leader>sr',  function() Snacks.picker.recent() end,       desc = "Search [R]ecent" },
