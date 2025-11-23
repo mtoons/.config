@@ -61,12 +61,22 @@ local function statusline()
             vim.diagnostic.config().signs.text[vim.diagnostic.severity.HINT] .. tostring(hint_count)
     end
 
-    vim.o.stl = mode .. "%## %t " .. diagnostics .. "%##%m%=" .. ft
+    return mode .. "%## %t %m " .. diagnostics .. " %##%=" .. ft
 end
 
-statusline()
+local inactive = "%t %m"
+
+vim.opt_local.stl = statusline()
+local augroup = vim.api.nvim_create_augroup("StatusLine", {})
 ---@diagnostic disable-next-line
-vim.api.nvim_create_autocmd({ "ModeChanged", "FileType", "WinEnter", "DiagnosticChanged" }, {
-    desc = "Update statusline",
-    callback = statusline,
+vim.api.nvim_create_autocmd({ "ModeChanged", "FileType", "WinEnter", "BufEnter", "DiagnosticChanged" }, {
+    desc = "Activate Statusline",
+    group = augroup,
+    callback = function() vim.opt_local.stl = statusline() end,
+})
+---@diagnostic disable-next-line
+vim.api.nvim_create_autocmd({ "WinLeave", "BufLeave" }, {
+    desc = "Inactive Statusline",
+    group = augroup,
+    callback = function() vim.opt_local.stl = inactive end,
 })
